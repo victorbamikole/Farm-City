@@ -36,6 +36,8 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="SplashOne" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="OnBoarding" options={{ headerShown: false }} />
+        <Stack.Screen name="Login" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
