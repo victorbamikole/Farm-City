@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import splashOne from "./app/SplashOne";
 import SplashTwo from "./app/SplashTwo";
-import Welcome from "./app/Welcome";
+import Welcome from "./app/OnBoarding";
 
 export type RootStackProps = {
   SplashOne: undefined;

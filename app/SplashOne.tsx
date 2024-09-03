@@ -43,7 +43,7 @@ const SplashOne = () => {
       500
     );
     setTimeout(() => {
-     router.push({ pathname: "/Welcome" } as any);
+     router.push({ pathname: "/OnBoarding" } as any);
     }, 2500);
   }, []);
 
@@ -85,7 +85,7 @@ export default SplashOne;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#EEF7EE",
     alignItems: "center",
     justifyContent: "center",
   },

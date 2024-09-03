@@ -24,3 +24,14 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+export const primary = '#02391E';
+export const primaryLight = 'rgba(0, 87, 0, 0.2)';
+export const secondary = '#157E4B';
+export const white = '#fff';
+export const black = '#000';
+export const lightGray = '#C2C2C2';
+export const darkGray = '#464F54';
+export const blurGray = '#EFF0F3';
+export const red = '#F5000F';
+export const darkRed = '#E42E44';
+
