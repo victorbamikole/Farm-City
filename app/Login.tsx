@@ -29,8 +29,10 @@ import { globalStyles } from "@/constants/globalStyles";
 import { hp, wp } from "@/constants/ResponsiveDesign";
 import StackHeader from "@/components/StackHeader";
 import { Spinner } from "@/constants/Spinner";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import Loading from "@/components/Loading";
+import { useRouter } from "expo-router";
+const router = useRouter();
 
 const { width, height } = Dimensions.get("window");
 
@@ -43,7 +45,7 @@ const Login: React.FC = () => {
   const [passwordValue, setPasswordValue] = useState<boolean>(false);
 
   const modalizeRef = useRef<Modalize>(null);
-//   const { signIn } = useContext(AuthContext);
+  //   const { signIn } = useContext(AuthContext);
   const navigation = useNavigation(); // Hook to access navigation
 
   const openMapsModal = () => {
@@ -123,7 +125,10 @@ const Login: React.FC = () => {
             value: "yes",
             phone: phone,
           });
-        } else if (data.data.collectorType === "waste-picker" && data.data.firstLogin === true) {
+        } else if (
+          data.data.collectorType === "waste-picker" &&
+          data.data.firstLogin === true
+        ) {
           navigation.navigate("ChangeCollectorPassword", {
             phone: phone,
             password: password,
@@ -177,7 +182,7 @@ const Login: React.FC = () => {
           onPress={onSubmit}
           style={styles.createButton}
           gradient
-          color={white}
+          color={"white"}
         />
       );
     }
@@ -186,7 +191,7 @@ const Login: React.FC = () => {
   const _retrieveUserDataFromStorage = async () => {
     try {
       const data = await AsyncStorage.getItem("data");
-      let session = JSON.parse(data || '{}');
+      let session = JSON.parse(data || "{}");
       if (session !== null) {
         // Handle retrieved data
       }
@@ -202,14 +207,16 @@ const Login: React.FC = () => {
           barStyle="dark-content"
           backgroundColor={Platform.OS === "ios" ? white : primary}
         />
-        <StackHeader title="" onPress={() => null} />
+        <StackHeader title="" onPress={() => router.back()} />
         <View style={styles.container}>
           <View>
-            <Text style={styles.regTitile}>Welcome Back!</Text>
-            <Text style={styles.regBody}>Continue from where you stopped.</Text>
+            <Text style={styles.regTitle}>Sign in to your account</Text>
+            <Text style={styles.regBody}>Welcome back, please enter your password to Sign In</Text>
           </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={styles.errorTextStyle}>{error && "An error occurred"}</Text>
+            <Text style={styles.errorTextStyle}>
+              {error && "An error occurred"}
+            </Text>
           </View>
 
           <KeyboardAwareScrollView>
@@ -228,11 +235,13 @@ const Login: React.FC = () => {
 
             <View style={styles.nameSection}>
               <Text style={styles.inputText}>Password</Text>
-              <View style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <TextInput
                   style={styles.logInput}
                   placeholder="Password"
@@ -245,9 +254,11 @@ const Login: React.FC = () => {
                 <TouchableOpacity onPress={showPassword}>
                   <Image
                     style={{ height: 20, width: 20, tintColor: "#A7A6A6" }}
-                    source={passwordValue
-                      ? require("../assets/images/eye_fill.png")
-                      : require("../assets/images/eye_off_fill.png")}
+                    source={
+                      passwordValue
+                        ? require("../assets/images/eye_fill.png")
+                        : require("../assets/images/eye_off_fill.png")
+                    }
                   />
                 </TouchableOpacity>
               </View>
@@ -257,58 +268,22 @@ const Login: React.FC = () => {
           </KeyboardAwareScrollView>
 
           <TextButton
-            title="FORGOT PASSWORD ?"
-            onPress={() => navigation.navigate("ForgotPage1")}
+            title="Forgot Password?"
+            onPress={() => router.push({ pathname: "/ForgotPassword" } as any)}
+
             titleStyle={styles.forgotButton}
           />
 
           <TextButton
-            title="No account?"
-            title2="Create one"
+            title="Don't have an account?"
+            title2="Sign Up"
             title2Color={primary}
-            onPress={() => navigation.navigate("SignUp")}
+            onPress={() => router.push({ pathname: "/SignUp" } as any)}
             titleStyle={styles.textButton}
           />
 
-          <Loading loading={loadingState} />
+          {/* <Loading loading={loadingState} /> */}
         </View>
-
-        <Modalize
-          ref={modalizeRef}
-          snapPoint={height / 2.5}
-          modalHeight={height / 2}
-          modalStyle={{
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-          }}
-        >
-          <View style={{ alignItems: "center", marginBottom: 30 }}>
-            <Text style={styles.modalHeeader}>Terms and Conditions</Text>
-            <Text style={styles.regBody}>
-              By using this app, you agree to our terms and conditions.
-            </Text>
-            <TouchableOpacity
-              style={{ alignSelf: "flex-end", marginRight: 20, marginTop: -20 }}
-              onPress={closeMapsModal}
-            >
-              <Image
-                source={require("../assets/images/close.png")}
-                style={{ width: 25, height: 25 }}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ alignItems: "center", marginBottom: 30 }}>
-            <FilledButton
-              button={globalStyles.buttonText}
-              buttonStyles={globalStyles.buttonStyles}
-              title="Accept Terms and Conditions"
-              onPress={acceptTermsAndCondition}
-              style={styles.createButton}
-              gradient
-              color={white}
-            />
-          </View>
-        </Modalize>
       </SafeAreaView>
     </>
   );
@@ -330,17 +305,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: hp(15),
     marginBottom: hp(15),
   },
-  regTitile: {
+  regTitle: {
     color: primary,
     fontSize: 18,
     fontFamily: "Raleway-Medium",
-    textAlign: "center",
+    textAlign: "left",
   },
   regBody: {
     fontSize: 14,
     paddingTop: 10,
     color: darkGray,
-    textAlign: "center",
+    textAlign: "left",
     fontFamily: "Raleway-Medium",
   },
   errorTextStyle: {

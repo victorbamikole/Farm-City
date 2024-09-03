@@ -10,7 +10,8 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
+
 import { primary, white } from '@/constants/Colors';
 import { WIDTH } from '@/constants/Layout';
 
@@ -35,7 +36,7 @@ const FilledButton: React.FC<FilledButtonProps> = ({
   textStyle,
   backgroundColor = primary,
   color = white,
-  activeOpacity = 0.2,
+  activeOpacity = 0.8,
   opacity = 1,
   disable = false,
   loading = false,
@@ -69,7 +70,7 @@ const FilledButton: React.FC<FilledButtonProps> = ({
     <View style={{ opacity }}>
       {gradient && (
         <LinearGradient
-          colors={['#008700', primary]}
+          colors={['#052415', primary]}
           style={[styles.gradient, style]}
         />
       )}

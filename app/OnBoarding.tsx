@@ -1,13 +1,23 @@
 import React from "react";
-import { Animated, Image, SafeAreaView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  Animated,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from '@react-navigation/native'; // Import the hook
+import { useNavigation } from "@react-navigation/native"; // Import the hook
 
 // constants
 import { Assets } from "@/constants/Assets";
 import { Colors } from "@/constants/Colors";
 import { COLORS, FONTS, SIZES } from "@/constants/Theme";
 import FilledButton from "@/components/buttons/Filled_button";
+import { useRouter } from "expo-router";
+const router = useRouter();
 
 const { onboarding1, onboarding2, onboarding3 } = Assets;
 
@@ -70,10 +80,7 @@ const OnBoarding = () => {
         )}
       >
         {onBoardings.map((item, index) => (
-          <View
-            key={`img-${index}`}
-            style={styles.imageAndTextContainer}
-          >
+          <View key={`img-${index}`} style={styles.imageAndTextContainer}>
             <View
               style={{
                 alignItems: "center",
@@ -99,7 +106,7 @@ const OnBoarding = () => {
               >
                 {item.title}
               </Text>
-  
+
               <Text
                 style={{
                   ...FONTS.body3,
@@ -112,31 +119,35 @@ const OnBoarding = () => {
               </Text>
             </View>
             {/* Button */}
-            <View 
+            <View
               style={{
                 justifyContent: "center",
                 flexDirection: "row",
                 marginTop: SIZES.padding, // Add some margin to the top of the button
               }}
             >
-              <FilledButton 
-                onPress={() => navigation.navigate("Login")}
+              <FilledButton
+                onPress={() => {}}
                 title={completed ? "Get Started" : "Skip"}
+                gradient
+                color={"white"}
               />
             </View>
             <View
               style={{
                 justifyContent: "center",
                 flexDirection: "row",
-                marginTop: SIZES.padding / 2, // Adjust spacing between button and login text
+                marginTop: SIZES.padding / 2,
               }}
             >
               <Text
                 style={{ textAlign: "center", ...FONTS.h3, color: COLORS.gray }}
               >
-                {" Existing account?   "}
+                {" Have an existing account?   "}
               </Text>
-              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <TouchableOpacity
+                onPress={() => router.push({ pathname: "/Login" } as any)}
+              >
                 <Text
                   style={{
                     textAlign: "center",
