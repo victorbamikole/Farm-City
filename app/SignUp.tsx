@@ -26,6 +26,7 @@ import axios from "axios";
 import OneSignal from "react-native-onesignal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Error from "@/components/Error";
+import { COLORS } from "@/constants/Theme";
 
 const { width, height } = Dimensions.get("window");
 
@@ -278,7 +279,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     fontSize: 12,
-    color: "#005700",
+    color: COLORS.primary,
     paddingTop: 5,
   },
   logInput: {

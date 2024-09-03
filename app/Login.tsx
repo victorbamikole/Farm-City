@@ -308,7 +308,6 @@ const styles = StyleSheet.create({
   regTitle: {
     color: primary,
     fontSize: 18,
-    fontFamily: "Raleway-Medium",
     textAlign: "left",
   },
   regBody: {
@@ -316,20 +315,16 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     color: darkGray,
     textAlign: "left",
-    fontFamily: "Raleway-Medium",
   },
   errorTextStyle: {
     color: "red",
-    fontFamily: "Raleway-Medium",
   },
   textButton: {
     fontSize: 14,
-    fontFamily: "Raleway-Medium",
   },
   forgotButton: {
     fontSize: 14,
     color: primary,
-    fontFamily: "Raleway-Medium",
   },
   logInput: {
     minHeight: hp(40),
@@ -345,10 +340,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#005700",
     paddingTop: 5,
-    fontFamily: "Raleway-Medium",
   },
   modalHeeader: {
-    fontFamily: "Raleway-Medium",
     fontSize: 18,
     fontWeight: "bold",
     color: "rgba(34, 45, 51, 1)",
