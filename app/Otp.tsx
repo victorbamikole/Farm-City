@@ -15,8 +15,9 @@ import { useRouter } from "expo-router";
 import { primary } from "@/constants/Colors";
 import FilledButton from "@/components/buttons/Filled_button";
 import { Spinner } from "@/constants/Spinner";
+import { wp } from "@/constants/ResponsiveDesign";
 
-const ForgotPassword = ({}) => {
+const Otp = () => {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,6 @@ const ForgotPassword = ({}) => {
   const onSubmit = async () => {
     if (phone === "" || password === "") {
       setPhone("");
-      setPassword("");
       Toast.show({
         text: "All fields are required",
         position: "top",
@@ -45,7 +45,7 @@ const ForgotPassword = ({}) => {
         },
       });
     } else {
-      await recoverPassword();
+      await otpvalidate();
     }
   };
 
@@ -55,9 +55,9 @@ const ForgotPassword = ({}) => {
     } else {
       return (
         <FilledButton
-          title="Recover Password"
+          title="Verifiy Email"
           onPress={onSubmit}
-          style={styles.createButton}
+        //   style={styles.createButton}
           gradient
           color={"white"}
         />
@@ -76,9 +76,9 @@ const ForgotPassword = ({}) => {
       {/* <KeyboardAwareScrollView> */}
       <View style={styles.container}>
         <View>
-          <Text style={styles.regTitle}>Forgot Password</Text>
+          <Text style={styles.regTitle}>Email Verification</Text>
           <Text style={styles.regBody}>
-            Enter your Email to reset your password
+          Enter the verification code sent to your email.
           </Text>
         </View>
         <View style={styles.errorContainer}>
@@ -110,7 +110,7 @@ const ForgotPassword = ({}) => {
   );
 };
 
-export default ForgotPassword;
+export default Otp;
 
 const styles = StyleSheet.create({
   safeArea: {

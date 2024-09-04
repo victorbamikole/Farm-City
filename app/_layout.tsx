@@ -40,6 +40,8 @@ export default function RootLayout() {
         <Stack.Screen name="Login" options={{ headerShown: false }} />
         <Stack.Screen name="ForgotPassword" options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" options={{ headerShown: false }} />
+        <Stack.Screen name="Otp" options={{ headerShown: false }} />
+        <Stack.Screen name="ResetPassword" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
