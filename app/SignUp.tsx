@@ -11,6 +11,7 @@ import {
   Dimensions,
   Platform,
 } from "react-native";
+import * as Progress from 'react-native-progress';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { CheckBox } from "react-native-elements";
 import FilledButton from "@/components/buttons/Filled_button";
@@ -83,11 +84,15 @@ const Signup = () => {
       />
       <StackHeader title="" onPress={() => router.back()} />
       <View style={styles.container}>
+      <Progress.Bar progress={0.3} width={200} borderRadius={20} height={10} color={primary} animated={true} borderColor={'#fff'}  unfilledColor={'#b1c5b1'}/>
         <View>
           <Text style={styles.regTitle}>Create an account</Text>
           <Text style={styles.regBody}>Sign up</Text>
         </View>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ flexGrow: 1 }}
+        >
           <Error error={error} />
           {/* First Name Input */}
           <View style={styles.nameSection}>
@@ -268,7 +273,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     fontSize: 12,
-    color: "#005700",
+    color: COLORS.primary,
     paddingTop: 5,
   },
   passwordContainer: {

@@ -133,7 +133,7 @@ const Login: React.FC = () => {
           <View>
             <Text style={styles.regTitle}>Sign in to your account</Text>
             <Text style={styles.regBody}>Welcome back</Text>
-            <Text style={styles.regBody}>please enter your password to Sign In</Text>
+            <Text style={styles.regBody}>Please enter your password to Sign In</Text>
           </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
             <Text style={styles.errorTextStyle}>
