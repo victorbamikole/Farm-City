@@ -123,7 +123,7 @@ const OnBoarding = () => {
               style={{
                 justifyContent: "center",
                 flexDirection: "row",
-                marginTop: SIZES.padding, // Add some margin to the top of the button
+                marginTop: SIZES.padding,
               }}
             >
               <FilledButton

@@ -136,7 +136,10 @@ const Login: React.FC = () => {
             </Text>
           </View>
 
-          <KeyboardAwareScrollView>
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ flexGrow: 1 }}
+          >
             <Text style={styles.inputText}>
               Email Address{" "}
               <Text style={{ color: "red", fontSize: 16 }}>*</Text>
@@ -186,21 +189,24 @@ const Login: React.FC = () => {
             </View>
 
             {renderButton()}
+            <>
+              <TextButton
+                title="Forgot Password?"
+                onPress={() =>
+                  router.push({ pathname: "/ForgotPassword" } as any)
+                }
+                titleStyle={styles.forgotButton}
+              />
+
+              <TextButton
+                title="Don't have an account?"
+                title2="Sign Up"
+                title2Color={primary}
+                onPress={() => router.push({ pathname: "/SignUp" } as any)}
+                titleStyle={styles.textButton}
+              />
+            </>
           </KeyboardAwareScrollView>
-
-          <TextButton
-            title="Forgot Password?"
-            onPress={() => router.push({ pathname: "/ForgotPassword" } as any)}
-            titleStyle={styles.forgotButton}
-          />
-
-          <TextButton
-            title="Don't have an account?"
-            title2="Sign Up"
-            title2Color={primary}
-            onPress={() => router.push({ pathname: "/SignUp" } as any)}
-            titleStyle={styles.textButton}
-          />
 
           {/* <Loading loading={loadingState} /> */}
         </View>

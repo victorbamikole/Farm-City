@@ -15,6 +15,7 @@ import { useRouter } from "expo-router";
 import { primary } from "@/constants/Colors";
 import FilledButton from "@/components/buttons/Filled_button";
 import { Spinner } from "@/constants/Spinner";
+import { hp } from "@/constants/ResponsiveDesign";
 
 const ForgotPassword = ({}) => {
   const [phone, setPhone] = useState("");
@@ -86,8 +87,8 @@ const ForgotPassword = ({}) => {
         </View>
         <View>
           <KeyboardAwareScrollView>
+            <Text style={styles.inputText}>Email Address <Text style={{ color: "red", fontSize: 16 }}>*</Text></Text>
             <View style={[styles.nameSection]}>
-              <Text style={styles.inputText}>Email Address</Text>
               <TextInput
                 style={styles.input}
                 keyboardType="default"
@@ -125,13 +126,14 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   nameSection: {
-    borderColor: "primary",
+    borderColor: primary,
     borderWidth: 0.5,
     borderRadius: 12,
-    minHeight: 50,
-    paddingHorizontal: 15,
-    paddingTop: 3,
-    marginBottom: 10,
+    minHeight: hp(50),
+    paddingHorizontal: hp(15),
+    marginBottom: hp(15),
+    marginTop: hp(10),
+    justifyContent: "center",
   },
   errorContainer: {
     alignItems: "center",
@@ -163,5 +165,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     color: "#005700",
+    fontSize: 12,
+    // paddingTop: 5,
   },
 });
