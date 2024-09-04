@@ -47,8 +47,6 @@ const Login: React.FC = () => {
   const modalizeRef = useRef<Modalize>(null);
   const navigation = useNavigation(); // Hook to access navigation
 
-
-
   useEffect(() => {
     // Fetch user data on mount
     _retrieveUserDataFromStorage();
@@ -86,8 +84,6 @@ const Login: React.FC = () => {
       await login();
     }
   };
-
-
 
   const showPassword = () => {
     setPasswordValue(!passwordValue);
@@ -133,7 +129,9 @@ const Login: React.FC = () => {
           <View>
             <Text style={styles.regTitle}>Sign in to your account</Text>
             <Text style={styles.regBody}>Welcome back</Text>
-            <Text style={styles.regBody}>Please enter your password to Sign In</Text>
+            <Text style={styles.regBody}>
+              Please enter your password to Sign In
+            </Text>
           </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
             <Text style={styles.errorTextStyle}>
@@ -143,15 +141,15 @@ const Login: React.FC = () => {
 
           <KeyboardAwareScrollView>
             <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Phone Number</Text>
+              <Text style={styles.inputText}>Email Address</Text>
+
               <TextInput
-                style={styles.logInput}
-                placeholder="Phone Number"
+                style={styles.input}
+                keyboardType="default"
+                placeholder="Email Address"
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
-                onChangeText={(text) => setPhone(text.trim())}
-                value={phone}
-                keyboardType="numeric"
+                onChangeText={(email) => setPhone(email)}
               />
             </View>
 
@@ -192,7 +190,6 @@ const Login: React.FC = () => {
           <TextButton
             title="Forgot Password?"
             onPress={() => router.push({ pathname: "/ForgotPassword" } as any)}
-
             titleStyle={styles.forgotButton}
           />
 
@@ -237,6 +234,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     color: darkGray,
     textAlign: "left",
+  },
+  input: {
+    minHeight: hp(40),
+    fontSize: hp(15),
+    width: "80%",
   },
   errorTextStyle: {
     color: "red",
