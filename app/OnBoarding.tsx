@@ -127,7 +127,7 @@ const OnBoarding = () => {
               }}
             >
               <FilledButton
-                onPress={() => {}}
+                onPress={() => router.push({ pathname: "/SignUp" } as any)}
                 title={completed ? "Get Started" : "Skip"}
                 gradient
                 color={"white"}
