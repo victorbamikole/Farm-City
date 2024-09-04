@@ -68,12 +68,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '400',
-    fontFamily: 'Raleway-Medium',
   },
   title2: {
     fontSize: 18,
     fontWeight: '400',
-    fontFamily: 'Raleway-Medium',
     marginLeft: 8,
   },
 });

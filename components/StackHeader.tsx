@@ -188,12 +188,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: "Raleway-Medium",
     color: "rgba(70, 79, 84, 1)",
   },
   textMissed: {
     fontSize: 14,
-    fontFamily: "Raleway-Medium",
     color: "rgba(245, 0, 15, 1)",
   },
 });

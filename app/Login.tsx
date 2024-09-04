@@ -45,16 +45,9 @@ const Login: React.FC = () => {
   const [passwordValue, setPasswordValue] = useState<boolean>(false);
 
   const modalizeRef = useRef<Modalize>(null);
-  //   const { signIn } = useContext(AuthContext);
   const navigation = useNavigation(); // Hook to access navigation
 
-  const openMapsModal = () => {
-    modalizeRef.current?.open();
-  };
 
-  const closeMapsModal = () => {
-    modalizeRef.current?.close();
-  };
 
   useEffect(() => {
     // Fetch user data on mount
@@ -94,79 +87,7 @@ const Login: React.FC = () => {
     }
   };
 
-  const login = async () => {
-    Keyboard.dismiss();
-    setLoadingState(true);
-    const baseUrl = `${BASE_URL}/collector/login`;
-    const payload = { phone, password };
 
-    try {
-      const response = await axios.post(baseUrl, payload, {
-        headers: httpHeaders.post,
-      });
-
-      setLoadingState(false);
-      const data = response.data;
-
-      if (data) {
-        await AsyncStorage.setItem("data", JSON.stringify(data.data));
-        await AsyncStorage.setItem("profile", JSON.stringify(data.data));
-        await AsyncStorage.setItem("token", JSON.stringify(data.data.token));
-        await AsyncStorage.setItem("first_time_user", "createdUser");
-
-        OneSignal.setExternalUserId(data?.data?.onesignal_id, (results) => {
-          if (results.push && results.push.success) {
-            console.log(results.push.success, "success");
-          }
-        });
-
-        if (data.data.verified === false) {
-          navigation.navigate("VerifyPhone", {
-            value: "yes",
-            phone: phone,
-          });
-        } else if (
-          data.data.collectorType === "waste-picker" &&
-          data.data.firstLogin === true
-        ) {
-          navigation.navigate("ChangeCollectorPassword", {
-            phone: phone,
-            password: password,
-          });
-        } else {
-          if (data.data.aggregatorId == null || data.data.aggregatorId === "") {
-            navigation.navigate("SetUpProfile");
-          } else {
-            setPhone("");
-            setPassword("");
-            // signIn();
-          }
-        }
-      }
-    } catch (error) {
-      setLoadingState(false);
-      setError(true);
-    }
-  };
-
-  const acceptTermsAndCondition = async () => {
-    closeMapsModal();
-    setLoadingState(true);
-    const payload = { collectorId: collectorId }; // Assume `collectorId` is defined somewhere
-    const baseUrl = `${BASE_URL}/collector/accept/termscondition`;
-
-    try {
-      const response = await axios.post(baseUrl, payload, {
-        headers: httpHeaders.post,
-      });
-      Alert.alert("Terms and Conditions accepted");
-      setLoadingState(false);
-    } catch (error) {
-      setLoadingState(false);
-      setError(true);
-      console.log("Error occurred", error.response.data);
-    }
-  };
 
   const showPassword = () => {
     setPasswordValue(!passwordValue);
@@ -211,7 +132,8 @@ const Login: React.FC = () => {
         <View style={styles.container}>
           <View>
             <Text style={styles.regTitle}>Sign in to your account</Text>
-            <Text style={styles.regBody}>Welcome back, please enter your password to Sign In</Text>
+            <Text style={styles.regBody}>Welcome back</Text>
+            <Text style={styles.regBody}>please enter your password to Sign In</Text>
           </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
             <Text style={styles.errorTextStyle}>
