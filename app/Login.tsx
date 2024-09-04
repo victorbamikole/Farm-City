@@ -129,9 +129,6 @@ const Login: React.FC = () => {
           <View>
             <Text style={styles.regTitle}>Sign in to your account</Text>
             <Text style={styles.regBody}>Welcome back</Text>
-            <Text style={styles.regBody}>
-              Please enter your password to Sign In
-            </Text>
           </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
             <Text style={styles.errorTextStyle}>
@@ -140,9 +137,11 @@ const Login: React.FC = () => {
           </View>
 
           <KeyboardAwareScrollView>
+            <Text style={styles.inputText}>
+              Email Address{" "}
+              <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+            </Text>
             <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Email Address</Text>
-
               <TextInput
                 style={styles.input}
                 keyboardType="default"
@@ -153,8 +152,10 @@ const Login: React.FC = () => {
               />
             </View>
 
+            <Text style={styles.inputText}>
+              Password <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+            </Text>
             <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Password</Text>
               <View
                 style={{
                   flexDirection: "row",
@@ -212,7 +213,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // justifyContent: "center",
+    justifyContent: "center",
     padding: 20,
     paddingTop: 20,
   },
@@ -223,6 +224,8 @@ const styles = StyleSheet.create({
     minHeight: hp(50),
     paddingHorizontal: hp(15),
     marginBottom: hp(15),
+    marginTop: hp(10),
+    justifyContent: "center",
   },
   regTitle: {
     color: primary,

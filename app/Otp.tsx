@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
+import * as Progress from "react-native-progress";
 import StackHeader from "@/components/StackHeader";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Loading from "@/components/Loading";
@@ -16,6 +17,8 @@ import { primary } from "@/constants/Colors";
 import FilledButton from "@/components/buttons/Filled_button";
 import { Spinner } from "@/constants/Spinner";
 import { wp } from "@/constants/ResponsiveDesign";
+import { OtpInput } from "react-native-otp-entry";
+import TextButton from "@/components/buttons/Text_button";
 
 const Otp = () => {
   const [phone, setPhone] = useState("");
@@ -57,7 +60,7 @@ const Otp = () => {
         <FilledButton
           title="Verifiy Email"
           onPress={onSubmit}
-        //   style={styles.createButton}
+          //   style={styles.createButton}
           gradient
           color={"white"}
         />
@@ -75,34 +78,58 @@ const Otp = () => {
 
       {/* <KeyboardAwareScrollView> */}
       <View style={styles.container}>
+        <Progress.Bar
+          progress={0.8}
+          width={200}
+          borderRadius={20}
+          height={10}
+          color={primary}
+          animated={true}
+          borderColor={"#fff"}
+          unfilledColor={"#b1c5b1"}
+        />
         <View>
           <Text style={styles.regTitle}>Email Verification</Text>
           <Text style={styles.regBody}>
-          Enter the verification code sent to your email.
+            Enter the verification code sent to your email.
           </Text>
         </View>
         <View style={styles.errorContainer}>
           <Text style={styles.errorTextStyle}>{error}</Text>
         </View>
-        <View>
-          <KeyboardAwareScrollView>
-            <View style={[styles.nameSection]}>
-              <Text style={styles.inputText}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                keyboardType="default"
-                placeholder="Email Address"
-                placeholderTextColor="gray"
-                underlineColorAndroid="transparent"
-                onChangeText={(email) => setPhone(email)}
-              />
-            </View>
-          </KeyboardAwareScrollView>
+        <View style={{ justifyContent: "center" }}>
+          {/* <KeyboardAwareScrollView> */}
+          <OtpInput
+            numberOfDigits={5}
+            focusColor={primary}
+            focusStickBlinkingDuration={500}
+            onTextChange={(text) => console.log(text)}
+            onFilled={(text) => console.log(`OTP is ${text}`)}
+            theme={{
+              containerStyle: styles.container,
+              inputsContainerStyle: styles.inputsContainer,
+              pinCodeContainerStyle: styles.pinCodeContainer,
+              pinCodeTextStyle: styles.pinCodeText,
+              focusStickStyle: styles.focusStick,
+              focusedPinCodeContainerStyle: styles.activePinCodeContainer,
+            }}
+          />
+          <View style={{ marginTop: 50 }}>
+            <TextButton
+              title=""
+              title2="Resend OTP Code"
+              title2Color={primary}
+              onPress={() => {}}
+              titleStyle={styles.textButton}
+            />
+          </View>
+          {/* Resend OTP Code */}
+          {/* </KeyboardAwareScrollView> */}
 
           <Text style={styles.error}>
             {/* Add your validation message here if any */}
           </Text>
-          {renderButton()}
+          {/* {renderButton()} */}
         </View>
       </View>
       <Loading loading={loading} />
@@ -162,5 +189,8 @@ const styles = StyleSheet.create({
   },
   inputText: {
     color: "#005700",
+  },
+  textButton: {
+    fontSize: 14,
   },
 });
