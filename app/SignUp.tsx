@@ -33,6 +33,7 @@ const { width, height } = Dimensions.get("window");
 const Signup = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [loadingState, setLoadingState] = useState(false);
   const [error, setError] = useState(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -50,6 +51,7 @@ const Signup = () => {
   const onReload = () => {
     setPhone("");
     setPassword("");
+    setConfirmPassword("");
   };
 
   const showPassword = () => {
@@ -183,8 +185,8 @@ const Signup = () => {
                   placeholderTextColor="gray"
                   secureTextEntry={!passwordValue}
                   underlineColorAndroid="transparent"
-                  onChangeText={(text) => setPassword(text.trim())}
-                  value={password}
+                  onChangeText={(text) => setConfirmPassword(text.trim())}
+                  value={confirmpassword}
                 />
                 <TouchableOpacity onPress={showPassword}>
                   <Image
