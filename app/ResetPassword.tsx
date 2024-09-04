@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import {
+  Image,
   Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import StackHeader from "@/components/StackHeader";
@@ -15,11 +17,16 @@ import { useRouter } from "expo-router";
 import { primary } from "@/constants/Colors";
 import FilledButton from "@/components/buttons/Filled_button";
 import { Spinner } from "@/constants/Spinner";
+import { hp } from "@/constants/ResponsiveDesign";
 
-const ForgotPassword = ({}) => {
+const ResetPassword = ({}) => {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [passwordValue, setPasswordValue] = useState(false);
+
   const [loadingState, setLoadingState] = useState<boolean>(false);
 
   const router = useRouter();
@@ -47,6 +54,10 @@ const ForgotPassword = ({}) => {
     } else {
       await recoverPassword();
     }
+  };
+
+  const showPassword = () => {
+    setPasswordValue(!passwordValue);
   };
 
   const renderButton = () => {
@@ -86,17 +97,71 @@ const ForgotPassword = ({}) => {
         </View>
         <View>
           <KeyboardAwareScrollView>
-            <View style={[styles.nameSection]}>
-              <Text style={styles.inputText}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                keyboardType="default"
-                placeholder="Email Address"
-                placeholderTextColor="gray"
-                underlineColorAndroid="transparent"
-                onChangeText={(email) => setPhone(email)}
-              />
-            </View>
+            <>
+              <View style={styles.nameSection}>
+                <Text style={styles.inputText}>Password</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <TextInput
+                    style={styles.logInput}
+                    placeholder="Password"
+                    placeholderTextColor="gray"
+                    secureTextEntry={!passwordValue}
+                    underlineColorAndroid="transparent"
+                    onChangeText={(text) => setPassword(text.trim())}
+                    value={password}
+                  />
+                  <TouchableOpacity onPress={showPassword}>
+                    <Image
+                      style={{ height: 20, width: 20, tintColor: "#A7A6A6" }}
+                      source={
+                        passwordValue
+                          ? require("../assets/images/eye_fill.png")
+                          : require("../assets/images/eye_off_fill.png")
+                      }
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </>
+
+            <>
+              <View style={styles.nameSection}>
+                <Text style={styles.inputText}>Confirm Password</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <TextInput
+                    style={styles.logInput}
+                    placeholder="Confirm Password"
+                    placeholderTextColor="gray"
+                    secureTextEntry={!passwordValue}
+                    underlineColorAndroid="transparent"
+                    onChangeText={(text) => setConfirmPassword(text.trim())}
+                    value={confirmpassword}
+                  />
+                  <TouchableOpacity onPress={showPassword}>
+                    <Image
+                      style={{ height: 20, width: 20, tintColor: "#A7A6A6" }}
+                      source={
+                        passwordValue
+                          ? require("../assets/images/eye_fill.png")
+                          : require("../assets/images/eye_off_fill.png")
+                      }
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </>
           </KeyboardAwareScrollView>
 
           <Text style={styles.error}>
@@ -110,7 +175,7 @@ const ForgotPassword = ({}) => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -141,6 +206,11 @@ const styles = StyleSheet.create({
     color: primary,
     fontSize: 18,
     textAlign: "left",
+  },
+  logInput: {
+    minHeight: hp(40),
+    fontSize: hp(15),
+    width: "80%",
   },
   regBody: {
     width: "85%",

@@ -38,8 +38,8 @@ const Signup = () => {
   const [error, setError] = useState(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [passwordValue, setPasswordValue] = useState(false);
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState(false);
 
-  const modalizeRef = useRef(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -56,6 +56,9 @@ const Signup = () => {
 
   const showPassword = () => {
     setPasswordValue(!passwordValue);
+  };
+  const showConfirmPassword = () => {
+    setConfirmPasswordValue(!confirmPasswordValue);
   };
 
   const renderButton = () => {
@@ -82,134 +85,122 @@ const Signup = () => {
       <View style={styles.container}>
         <View>
           <Text style={styles.regTitle}>Create an account</Text>
-          {/* <Text style={styles.regBody}>Sign up</Text> */}
-        </View>
-        <View style={{ alignItems: "center", marginBottom: 20 }}>
-          <Text style={styles.errorTextStyle}>
-            {error && "An error occurred"}
-          </Text>
+          <Text style={styles.regBody}>Sign up</Text>
         </View>
         <KeyboardAwareScrollView>
           <Error error={error} />
-          <>
-            <View style={styles.nameSection}>
-              <Text style={styles.inputText}>First Name</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="First Name"
-                placeholderTextColor="gray"
-                keyboardType="default"
-                underlineColorAndroid="transparent"
-                onChangeText={(firstname) => setPhone(firstname)}
-              />
-            </View>
-            <Text style={styles.error}>{/* Validation error here */}</Text>
-          </>
-          <>
-            <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Last Name</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Last Name"
-                placeholderTextColor="gray"
-                keyboardType="default"
-                underlineColorAndroid="transparent"
-                onChangeText={(lastname) => setPhone(lastname)}
-              />
-            </View>
-            <Text style={styles.error}>{/* Validation error here */}</Text>
-          </>
-
-          <>
-            <View style={[styles.nameSection]}>
-              <Text style={styles.inputText}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                keyboardType="default"
-                placeholder="Email Address"
-                placeholderTextColor="gray"
-                underlineColorAndroid="transparent"
-                onChangeText={(email) => setPhone(email)}
-              />
-            </View>
-            <Text style={styles.error}>{/* Validation error here */}</Text>
-          </>
-
-
-          <>
+          {/* First Name Input */}
           <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Password</Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <TextInput
-                  style={styles.logInput}
-                  placeholder="Confirm Password"
-                  placeholderTextColor="gray"
-                  secureTextEntry={!passwordValue}
-                  underlineColorAndroid="transparent"
-                  onChangeText={(text) => setPassword(text.trim())}
-                  value={password}
-                />
-                <TouchableOpacity onPress={showPassword}>
-                  <Image
-                    style={{ height: 20, width: 20, tintColor: "#A7A6A6" }}
-                    source={
-                      passwordValue
-                        ? require("../assets/images/eye_fill.png")
-                        : require("../assets/images/eye_off_fill.png")
-                    }
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </>
+            <Text style={styles.inputText}>First Name</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="First Name"
+              placeholderTextColor="gray"
+              keyboardType="default"
+              underlineColorAndroid="transparent"
+              onChangeText={(firstname) => setPhone(firstname)}
+            />
+          </View>
+          {/* <Text style={styles.error}>Validation error here</Text> */}
 
-          <>
+          {/* Last Name Input */}
           <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Confirm Password</Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <TextInput
-                  style={styles.logInput}
-                  placeholder="Confirm Password"
-                  placeholderTextColor="gray"
-                  secureTextEntry={!passwordValue}
-                  underlineColorAndroid="transparent"
-                  onChangeText={(text) => setConfirmPassword(text.trim())}
-                  value={confirmpassword}
+            <Text style={styles.inputText}>Last Name</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Last Name"
+              placeholderTextColor="gray"
+              keyboardType="default"
+              underlineColorAndroid="transparent"
+              onChangeText={(lastname) => setPhone(lastname)}
+            />
+          </View>
+          {/* <Text style={styles.error}>Validation error here</Text> */}
+
+          {/* Email Address Input */}
+          <View style={styles.nameSection}>
+            <Text style={styles.inputText}>Email Address</Text>
+            <TextInput
+              style={styles.input}
+              keyboardType="default"
+              placeholder="Email Address"
+              placeholderTextColor="gray"
+              underlineColorAndroid="transparent"
+              onChangeText={(email) => setPhone(email)}
+            />
+          </View>
+          {/* <Text style={styles.error}>Validation error here</Text> */}
+
+          {/* Password Input */}
+          <View style={styles.nameSection}>
+            <Text style={styles.inputText}>Password</Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.logInput}
+                placeholder="Password"
+                placeholderTextColor="gray"
+                secureTextEntry={!passwordValue}
+                underlineColorAndroid="transparent"
+                onChangeText={(text) => setPassword(text.trim())}
+                value={password}
+              />
+              <TouchableOpacity onPress={showPassword}>
+                <Image
+                  style={styles.eyeIcon}
+                  source={
+                    passwordValue
+                      ? require("../assets/images/eye_fill.png")
+                      : require("../assets/images/eye_off_fill.png")
+                  }
                 />
-                <TouchableOpacity onPress={showPassword}>
-                  <Image
-                    style={{ height: 20, width: 20, tintColor: "#A7A6A6" }}
-                    source={
-                      passwordValue
-                        ? require("../assets/images/eye_fill.png")
-                        : require("../assets/images/eye_off_fill.png")
-                    }
-                  />
-                </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             </View>
-          </>
+          </View>
 
+          {/* Confirm Password Input */}
+          <View style={styles.nameSection}>
+            <Text style={styles.inputText}>Confirm Password</Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.logInput}
+                placeholder="Confirm Password"
+                placeholderTextColor="gray"
+                secureTextEntry={!confirmPasswordValue}
+                underlineColorAndroid="transparent"
+                onChangeText={(text) => setConfirmPassword(text.trim())}
+                value={confirmpassword}
+              />
+              <TouchableOpacity onPress={showConfirmPassword}>
+              <Image
+                  style={styles.eyeIcon}
+                  source={
+                    confirmPasswordValue
+                      ? require("../assets/images/eye_fill.png")
+                      : require("../assets/images/eye_off_fill.png")
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
 
-          <View style={styles.buttons}>
+          {/* Terms and Conditions Checkbox */}
+          <View style={styles.checkboxContainer}>
+            <CheckBox
+              checked={toggleCheckBox}
+              onPress={() => setToggleCheckBox(!toggleCheckBox)}
+              containerStyle={styles.checkbox}
+              checkedColor={primary}
+            />
+            <Text style={styles.checkboxText}>
+              I agree to Farm City Terms & Conditions and Privacy Policy.
+            </Text>
+          </View>
+
+          {/* Continue Button */}
+          <View >
             <FilledButton
               title="Continue"
-              onPress={() => {
-                console.log("pressed");
-                // Add signup logic here
-              }}
+              onPress={() => router.push("/Otp")}
               backgroundColor={primary}
               color={white}
               style={[
@@ -225,7 +216,7 @@ const Signup = () => {
               title="Existing account?"
               title2="Login"
               title2Color={primary}
-              onPress={() => router.push({ pathname: "/Login" } as any)}
+              onPress={() => router.push("/Login")}
               titleStyle={styles.textButton}
             />
           </View>
@@ -240,7 +231,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center",
     padding: 20,
     paddingTop: 20,
   },
@@ -266,9 +256,6 @@ const styles = StyleSheet.create({
   errorTextStyle: {
     color: "red",
   },
-  textButton: {
-    fontSize: 14,
-  },
   input: {
     minHeight: hp(40),
     fontSize: hp(15),
@@ -281,13 +268,45 @@ const styles = StyleSheet.create({
   },
   inputText: {
     fontSize: 12,
-    color: COLORS.primary,
+    color: "#005700",
     paddingTop: 5,
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  eyeIcon: {
+    height: 20,
+    width: 20,
+    tintColor: "#A7A6A6",
   },
   logInput: {
     minHeight: hp(40),
     fontSize: hp(15),
     width: "80%",
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  checkbox: {
+    marginRight: 10,
+    padding: 0,
+    backgroundColor: "transparent",
+    borderWidth: 0,
+  },
+  checkboxText: {
+    fontSize: 12,
+    color: primary,
+    flexWrap: "wrap",
+    flex: 1,
+  },
+  createButton: {
+    marginTop: 20,
+  },
+  textButton: {
+    fontSize: 14,
   },
 });
 
