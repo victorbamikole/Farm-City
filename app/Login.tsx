@@ -125,9 +125,9 @@ const Login: React.FC = () => {
       <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={Platform.OS === "ios" ? white : primary}
+          backgroundColor={Platform.OS === "ios" ? 'white' : '#fff'}
         />
-        <StackHeader title="" onPress={() => router.back()} />
+        {/* <StackHeader title="" onPress={() => router.back()} /> */}
         <View style={styles.container}>
           <View>
             <Text style={styles.regTitle}>Sign in to your account</Text>
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "center",
     padding: 20,
-    paddingTop: 20,
+    paddingTop: Platform.OS !== "ios" ? 40 : 0,
   },
   nameSection: {
     borderColor: primary,
