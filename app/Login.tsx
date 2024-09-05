@@ -33,7 +33,7 @@ import { useNavigation } from "@react-navigation/native";
 import Loading from "@/components/Loading";
 import { useRouter } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
-// import * as LocalAuthentication from "expo-local-authentication";
+import * as LocalAuthentication from "expo-local-authentication";
 
 const router = useRouter();
 

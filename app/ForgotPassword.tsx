@@ -15,7 +15,7 @@ import { useRouter } from "expo-router";
 import { primary } from "@/constants/Colors";
 import FilledButton from "@/components/buttons/Filled_button";
 import { Spinner } from "@/constants/Spinner";
-import { hp } from "@/constants/ResponsiveDesign";
+import { hp, wp } from "@/constants/ResponsiveDesign";
 
 const ForgotPassword = ({}) => {
   const [phone, setPhone] = useState("");
@@ -28,7 +28,6 @@ const ForgotPassword = ({}) => {
   const onSubmit = async () => {
     if (phone === "" || password === "") {
       setPhone("");
-      setPassword("");
       Toast.show({
         text: "All fields are required",
         position: "top",
@@ -72,14 +71,16 @@ const ForgotPassword = ({}) => {
         barStyle="dark-content"
         backgroundColor={Platform.OS === "ios" ? "white" : "primary"}
       />
-      <StackHeader title="" onPress={() => router.back()} />
-
+      <View style={styles.headerContainer}>
+        <StackHeader title="" onPress={() => router.back()} />
+      </View>
       {/* <KeyboardAwareScrollView> */}
       <View style={styles.container}>
         <View>
           <Text style={styles.regTitle}>Forgot Password</Text>
           <Text style={styles.regBody}>
-            Enter your Email to reset your password
+            Enter your Email you've registered with. We'll send you the
+            instrustions there.
           </Text>
         </View>
         <View style={styles.errorContainer}>
@@ -87,7 +88,10 @@ const ForgotPassword = ({}) => {
         </View>
         <View>
           <KeyboardAwareScrollView>
-            <Text style={styles.inputText}>Email Address <Text style={{ color: "red", fontSize: 16 }}>*</Text></Text>
+            <Text style={styles.inputText}>
+              Email Address{" "}
+              <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+            </Text>
             <View style={[styles.nameSection]}>
               <TextInput
                 style={styles.input}
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   regBody: {
-    width: "85%",
+    // width: "100%",
     fontSize: 14,
     paddingTop: 10,
     color: "darkGray",
@@ -157,6 +161,12 @@ const styles = StyleSheet.create({
   input: {
     minHeight: 40,
     fontSize: 15,
+  },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingTop: Platform.OS !== "ios" ? 40 : 0,
   },
   error: {
     color: "#ff5252",
