@@ -125,7 +125,7 @@ const Login: React.FC = () => {
       <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={Platform.OS === "ios" ? 'white' : '#fff'}
+          backgroundColor={Platform.OS === "ios" ? "white" : "#fff"}
         />
         {/* <StackHeader title="" onPress={() => router.back()} /> */}
         <View style={styles.container}>
@@ -155,6 +155,7 @@ const Login: React.FC = () => {
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
                 onChangeText={(email) => setPhone(email)}
+                selectionColor={"#02391E"}
               />
             </View>
 
@@ -177,6 +178,7 @@ const Login: React.FC = () => {
                   underlineColorAndroid="transparent"
                   onChangeText={(text) => setPassword(text.trim())}
                   value={password}
+                  selectionColor={"#02391E"}
                 />
                 <TouchableOpacity onPress={showPassword}>
                   <Image

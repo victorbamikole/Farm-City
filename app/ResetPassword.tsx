@@ -115,6 +115,7 @@ const ResetPassword = ({}) => {
                     underlineColorAndroid="transparent"
                     onChangeText={(text) => setPassword(text.trim())}
                     value={password}
+                    selectionColor={"#02391E"}
                   />
                   <TouchableOpacity onPress={showPassword}>
                     <Image
@@ -148,6 +149,7 @@ const ResetPassword = ({}) => {
                     underlineColorAndroid="transparent"
                     onChangeText={(text) => setConfirmPassword(text.trim())}
                     value={confirmpassword}
+                    selectionColor={"#02391E"}
                   />
                   <TouchableOpacity onPress={showPassword}>
                     <Image

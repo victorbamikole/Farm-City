@@ -117,6 +117,8 @@ const Signup = () => {
               keyboardType="default"
               underlineColorAndroid="transparent"
               onChangeText={(firstname) => setPhone(firstname)}
+              selectionColor={'#02391E'}
+
             />
           </View>
           {/* <Text style={styles.error}>Validation error here</Text> */}
@@ -133,6 +135,8 @@ const Signup = () => {
               keyboardType="default"
               underlineColorAndroid="transparent"
               onChangeText={(lastname) => setPhone(lastname)}
+              selectionColor={'#02391E'}
+
             />
           </View>
           {/* <Text style={styles.error}>Validation error here</Text> */}
@@ -149,6 +153,8 @@ const Signup = () => {
               placeholderTextColor="gray"
               underlineColorAndroid="transparent"
               onChangeText={(email) => setPhone(email)}
+              selectionColor={'#02391E'}
+
             />
           </View>
           {/* <Text style={styles.error}>Validation error here</Text> */}
@@ -167,6 +173,8 @@ const Signup = () => {
                 underlineColorAndroid="transparent"
                 onChangeText={(text) => setPassword(text.trim())}
                 value={password}
+                selectionColor={'#02391E'}
+
               />
               <TouchableOpacity onPress={showPassword}>
                 <Image
@@ -196,6 +204,7 @@ const Signup = () => {
                 underlineColorAndroid="transparent"
                 onChangeText={(text) => setConfirmPassword(text.trim())}
                 value={confirmpassword}
+                selectionColor={'#02391E'}
               />
               <TouchableOpacity onPress={showConfirmPassword}>
                 <Image

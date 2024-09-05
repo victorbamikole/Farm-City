@@ -22,11 +22,12 @@ const ForgotPassword = ({}) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingState, setLoadingState] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState(false); // State to track focus
 
   const router = useRouter();
 
   const onSubmit = async () => {
-    if (phone === "" || password === "") {
+    if (phone === "") {
       setPhone("");
       Toast.show({
         text: "All fields are required",
@@ -74,13 +75,13 @@ const ForgotPassword = ({}) => {
       <View style={styles.headerContainer}>
         <StackHeader title="" onPress={() => router.back()} />
       </View>
-      {/* <KeyboardAwareScrollView> */}
+
       <View style={styles.container}>
         <View>
           <Text style={styles.regTitle}>Forgot Password</Text>
           <Text style={styles.regBody}>
             Enter your Email you've registered with. We'll send you the
-            instrustions there.
+            instructions there.
           </Text>
         </View>
         <View style={styles.errorContainer}>
@@ -92,21 +93,27 @@ const ForgotPassword = ({}) => {
               Email Address{" "}
               <Text style={{ color: "red", fontSize: 16 }}>*</Text>
             </Text>
-            <View style={[styles.nameSection]}>
+            <View
+              style={[
+                styles.nameSection,
+                isFocused && { borderColor: primary }, // Change border color on focus
+              ]}
+            >
               <TextInput
                 style={styles.input}
                 keyboardType="default"
                 placeholder="Email Address"
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
+                onFocus={() => setIsFocused(true)} // Set focus state to true
+                onBlur={() => setIsFocused(false)}  // Set focus state to false
                 onChangeText={(email) => setPhone(email)}
+                selectionColor={'#02391E'}
               />
             </View>
           </KeyboardAwareScrollView>
 
-          <Text style={styles.error}>
-            {/* Add your validation message here if any */}
-          </Text>
+          <Text style={styles.error}></Text>
           {renderButton()}
         </View>
       </View>
@@ -125,12 +132,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // justifyContent: "center",
     padding: 20,
     paddingTop: 20,
   },
   nameSection: {
-    borderColor: primary,
+    borderColor: "gray", // Default border color
     borderWidth: 0.5,
     borderRadius: 12,
     minHeight: hp(50),
@@ -149,7 +155,6 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   regBody: {
-    // width: "100%",
     fontSize: 14,
     paddingTop: 10,
     color: "darkGray",
@@ -176,6 +181,5 @@ const styles = StyleSheet.create({
   inputText: {
     color: "#005700",
     fontSize: 12,
-    // paddingTop: 5,
   },
 });
