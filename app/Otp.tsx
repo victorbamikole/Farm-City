@@ -72,7 +72,7 @@ const Otp = () => {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={Platform.OS === "ios" ? "white" : "primary"}
+        backgroundColor={Platform.OS === "ios" ? "white" : "white"}
       />
       <View style={styles.headerContainer}>
         <StackHeader title="" onPress={() => router.back()} />
@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     padding: 20,
-    paddingTop: 20,
   },
   nameSection: {
     borderColor: "primary",
@@ -180,6 +179,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
+    paddingTop: Platform.OS !== "ios" ? 40 : 0,
+
   },
   errorTextStyle: {
     color: "red",

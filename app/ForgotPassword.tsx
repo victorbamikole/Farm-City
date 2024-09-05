@@ -69,7 +69,7 @@ const ForgotPassword = ({}) => {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={Platform.OS === "ios" ? "white" : "primary"}
+        backgroundColor={Platform.OS === "ios" ? "white" : "white"}
       />
       <View style={styles.headerContainer}>
         <StackHeader title="" onPress={() => router.back()} />
