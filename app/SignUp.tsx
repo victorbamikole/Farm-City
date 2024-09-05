@@ -82,11 +82,11 @@ const Signup = () => {
         barStyle="dark-content"
         backgroundColor={Platform.OS === "ios" ? white : primary}
       />
-      <StackHeader title="" onPress={() => router.back()} />
-      <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <StackHeader title="" onPress={() => router.back()} />
         <Progress.Bar
-          progress={0.4}
-          width={200}
+          progress={0.35}
+          width={150}
           borderRadius={20}
           height={10}
           color={primary}
@@ -94,6 +94,8 @@ const Signup = () => {
           borderColor={"#fff"}
           unfilledColor={"#b1c5b1"}
         />
+      </View>
+      <View style={styles.container}>
         <View>
           <Text style={styles.regTitle}>Create an account</Text>
           <Text style={styles.regBody}>Sign up</Text>
@@ -104,7 +106,9 @@ const Signup = () => {
         >
           <Error error={error} />
           {/* First Name Input */}
-          <Text style={styles.inputText}>First Name <Text style={{ color: "red",fontSize: 16, }}>*</Text></Text>
+          <Text style={styles.inputText}>
+            First Name <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+          </Text>
           <View style={styles.nameSection}>
             <TextInput
               style={styles.input}
@@ -118,7 +122,9 @@ const Signup = () => {
           {/* <Text style={styles.error}>Validation error here</Text> */}
 
           {/* Last Name Input */}
-          <Text style={styles.inputText}>Last Name <Text style={{ color: "red",fontSize: 16, }}>*</Text></Text>
+          <Text style={styles.inputText}>
+            Last Name <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+          </Text>
           <View style={styles.nameSection}>
             <TextInput
               style={styles.input}
@@ -132,7 +138,9 @@ const Signup = () => {
           {/* <Text style={styles.error}>Validation error here</Text> */}
 
           {/* Email Address Input */}
-          <Text style={styles.inputText}>Email Address <Text style={{ color: "red",fontSize: 16, }}>*</Text></Text>
+          <Text style={styles.inputText}>
+            Email Address <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+          </Text>
           <View style={styles.nameSection}>
             <TextInput
               style={styles.input}
@@ -146,7 +154,9 @@ const Signup = () => {
           {/* <Text style={styles.error}>Validation error here</Text> */}
 
           {/* Password Input */}
-          <Text style={styles.inputText}>Password <Text style={{ color: "red",fontSize: 16, }}>*</Text></Text>
+          <Text style={styles.inputText}>
+            Password <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+          </Text>
           <View style={styles.nameSection}>
             <View style={styles.passwordContainer}>
               <TextInput
@@ -251,6 +261,12 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 20,
   },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingTop: Platform.OS !== "ios" ? 40 : 0,
+  },
   nameSection: {
     borderColor: primary,
     borderWidth: 0.5,
@@ -315,6 +331,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderWidth: 0,
   },
+
   checkboxText: {
     fontSize: 12,
     color: primary,

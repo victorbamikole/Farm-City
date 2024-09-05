@@ -74,13 +74,11 @@ const Otp = () => {
         barStyle="dark-content"
         backgroundColor={Platform.OS === "ios" ? "white" : "primary"}
       />
-      <StackHeader title="" onPress={() => router.back()} />
-
-      {/* <KeyboardAwareScrollView> */}
-      <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <StackHeader title="" onPress={() => router.back()} />
         <Progress.Bar
-          progress={0.8}
-          width={200}
+          progress={0.7}
+          width={150}
           borderRadius={20}
           height={10}
           color={primary}
@@ -88,6 +86,9 @@ const Otp = () => {
           borderColor={"#fff"}
           unfilledColor={"#b1c5b1"}
         />
+      </View>
+      {/* <KeyboardAwareScrollView> */}
+      <View style={styles.container}>
         <View>
           <Text style={styles.regTitle}>Email Verification</Text>
           <Text style={styles.regBody}>
@@ -175,6 +176,11 @@ const styles = StyleSheet.create({
     color: "darkGray",
     textAlign: "left",
   },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
   errorTextStyle: {
     color: "red",
   },
@@ -192,5 +198,33 @@ const styles = StyleSheet.create({
   },
   textButton: {
     fontSize: 14,
+  },
+  inputsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+  pinCodeContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#D3D3D3",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#F8F8F8",
+  },
+  activePinCodeContainer: {
+    borderColor: primary, // Primary color for focused input
+    borderWidth: 2,
+  },
+  pinCodeText: {
+    fontSize: 18,
+    color: "#000", // Black text color
+  },
+  focusStick: {
+    width: 2,
+    height: 30,
+    backgroundColor: primary, // Primary color for the stick when focused
   },
 });

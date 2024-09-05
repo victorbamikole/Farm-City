@@ -32,6 +32,9 @@ import { Spinner } from "@/constants/Spinner";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "@/components/Loading";
 import { useRouter } from "expo-router";
+import { Entypo } from "@expo/vector-icons";
+// import * as LocalAuthentication from "expo-local-authentication";
+
 const router = useRouter();
 
 const { width, height } = Dimensions.get("window");
@@ -189,7 +192,10 @@ const Login: React.FC = () => {
             </View>
 
             {renderButton()}
-            <>
+            <TouchableOpacity style={{ alignSelf: "center", marginTop: 20 }}>
+              <Entypo name="fingerprint" size={50} color={primary} />
+            </TouchableOpacity>
+            <View style={{ marginTop: 60 }}>
               <TextButton
                 title="Forgot Password?"
                 onPress={() =>
@@ -205,7 +211,7 @@ const Login: React.FC = () => {
                 onPress={() => router.push({ pathname: "/SignUp" } as any)}
                 titleStyle={styles.textButton}
               />
-            </>
+            </View>
           </KeyboardAwareScrollView>
 
           {/* <Loading loading={loadingState} /> */}
@@ -282,7 +288,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   createButton: {
-    // Define your styles for createButton here
+    marginTop: 10,
   },
 });
 
