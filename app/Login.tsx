@@ -32,6 +32,9 @@ import { Spinner } from "@/constants/Spinner";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "@/components/Loading";
 import { useRouter } from "expo-router";
+import { Entypo } from "@expo/vector-icons";
+import * as LocalAuthentication from "expo-local-authentication";
+
 const router = useRouter();
 
 const { width, height } = Dimensions.get("window");
@@ -45,16 +48,7 @@ const Login: React.FC = () => {
   const [passwordValue, setPasswordValue] = useState<boolean>(false);
 
   const modalizeRef = useRef<Modalize>(null);
-  //   const { signIn } = useContext(AuthContext);
   const navigation = useNavigation(); // Hook to access navigation
-
-  const openMapsModal = () => {
-    modalizeRef.current?.open();
-  };
-
-  const closeMapsModal = () => {
-    modalizeRef.current?.close();
-  };
 
   useEffect(() => {
     // Fetch user data on mount
@@ -91,80 +85,6 @@ const Login: React.FC = () => {
       });
     } else {
       await login();
-    }
-  };
-
-  const login = async () => {
-    Keyboard.dismiss();
-    setLoadingState(true);
-    const baseUrl = `${BASE_URL}/collector/login`;
-    const payload = { phone, password };
-
-    try {
-      const response = await axios.post(baseUrl, payload, {
-        headers: httpHeaders.post,
-      });
-
-      setLoadingState(false);
-      const data = response.data;
-
-      if (data) {
-        await AsyncStorage.setItem("data", JSON.stringify(data.data));
-        await AsyncStorage.setItem("profile", JSON.stringify(data.data));
-        await AsyncStorage.setItem("token", JSON.stringify(data.data.token));
-        await AsyncStorage.setItem("first_time_user", "createdUser");
-
-        OneSignal.setExternalUserId(data?.data?.onesignal_id, (results) => {
-          if (results.push && results.push.success) {
-            console.log(results.push.success, "success");
-          }
-        });
-
-        if (data.data.verified === false) {
-          navigation.navigate("VerifyPhone", {
-            value: "yes",
-            phone: phone,
-          });
-        } else if (
-          data.data.collectorType === "waste-picker" &&
-          data.data.firstLogin === true
-        ) {
-          navigation.navigate("ChangeCollectorPassword", {
-            phone: phone,
-            password: password,
-          });
-        } else {
-          if (data.data.aggregatorId == null || data.data.aggregatorId === "") {
-            navigation.navigate("SetUpProfile");
-          } else {
-            setPhone("");
-            setPassword("");
-            // signIn();
-          }
-        }
-      }
-    } catch (error) {
-      setLoadingState(false);
-      setError(true);
-    }
-  };
-
-  const acceptTermsAndCondition = async () => {
-    closeMapsModal();
-    setLoadingState(true);
-    const payload = { collectorId: collectorId }; // Assume `collectorId` is defined somewhere
-    const baseUrl = `${BASE_URL}/collector/accept/termscondition`;
-
-    try {
-      const response = await axios.post(baseUrl, payload, {
-        headers: httpHeaders.post,
-      });
-      Alert.alert("Terms and Conditions accepted");
-      setLoadingState(false);
-    } catch (error) {
-      setLoadingState(false);
-      setError(true);
-      console.log("Error occurred", error.response.data);
     }
   };
 
@@ -211,7 +131,7 @@ const Login: React.FC = () => {
         <View style={styles.container}>
           <View>
             <Text style={styles.regTitle}>Sign in to your account</Text>
-            <Text style={styles.regBody}>Welcome back, please enter your password to Sign In</Text>
+            <Text style={styles.regBody}>Welcome back</Text>
           </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
             <Text style={styles.errorTextStyle}>
@@ -219,22 +139,29 @@ const Login: React.FC = () => {
             </Text>
           </View>
 
-          <KeyboardAwareScrollView>
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ flexGrow: 1 }}
+          >
+            <Text style={styles.inputText}>
+              Email Address{" "}
+              <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+            </Text>
             <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Phone Number</Text>
               <TextInput
-                style={styles.logInput}
-                placeholder="Phone Number"
+                style={styles.input}
+                keyboardType="default"
+                placeholder="Email Address"
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
-                onChangeText={(text) => setPhone(text.trim())}
-                value={phone}
-                keyboardType="numeric"
+                onChangeText={(email) => setPhone(email)}
               />
             </View>
 
+            <Text style={styles.inputText}>
+              Password <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+            </Text>
             <View style={styles.nameSection}>
-              <Text style={styles.inputText}>Password</Text>
               <View
                 style={{
                   flexDirection: "row",
@@ -265,22 +192,27 @@ const Login: React.FC = () => {
             </View>
 
             {renderButton()}
+            <TouchableOpacity style={{ alignSelf: "center", marginTop: 20 }}>
+              <Entypo name="fingerprint" size={50} color={primary} />
+            </TouchableOpacity>
+            <View style={{ marginTop: 60 }}>
+              <TextButton
+                title="Forgot Password?"
+                onPress={() =>
+                  router.push({ pathname: "/ForgotPassword" } as any)
+                }
+                titleStyle={styles.forgotButton}
+              />
+
+              <TextButton
+                title="Don't have an account?"
+                title2="Sign Up"
+                title2Color={primary}
+                onPress={() => router.push({ pathname: "/SignUp" } as any)}
+                titleStyle={styles.textButton}
+              />
+            </View>
           </KeyboardAwareScrollView>
-
-          <TextButton
-            title="Forgot Password?"
-            onPress={() => router.push({ pathname: "/ForgotPassword" } as any)}
-
-            titleStyle={styles.forgotButton}
-          />
-
-          <TextButton
-            title="Don't have an account?"
-            title2="Sign Up"
-            title2Color={primary}
-            onPress={() => router.push({ pathname: "/SignUp" } as any)}
-            titleStyle={styles.textButton}
-          />
 
           {/* <Loading loading={loadingState} /> */}
         </View>
@@ -293,7 +225,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // justifyContent: "center",
+    justifyContent: "center",
     padding: 20,
     paddingTop: 20,
   },
@@ -304,6 +236,8 @@ const styles = StyleSheet.create({
     minHeight: hp(50),
     paddingHorizontal: hp(15),
     marginBottom: hp(15),
+    marginTop: hp(10),
+    justifyContent: "center",
   },
   regTitle: {
     color: primary,
@@ -315,6 +249,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     color: darkGray,
     textAlign: "left",
+  },
+  input: {
+    minHeight: hp(40),
+    fontSize: hp(15),
+    width: "80%",
   },
   errorTextStyle: {
     color: "red",
@@ -349,7 +288,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   createButton: {
-    // Define your styles for createButton here
+    marginTop: 10,
   },
 });
 

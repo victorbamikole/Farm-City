@@ -123,11 +123,11 @@ const OnBoarding = () => {
               style={{
                 justifyContent: "center",
                 flexDirection: "row",
-                marginTop: SIZES.padding, // Add some margin to the top of the button
+                marginTop: SIZES.padding,
               }}
             >
               <FilledButton
-                onPress={() => {}}
+                onPress={() => router.push({ pathname: "/SignUp" } as any)}
                 title={completed ? "Get Started" : "Skip"}
                 gradient
                 color={"white"}

@@ -19,8 +19,5 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "red",
-    fontFamily: "Raleway-Medium",
-
-    // fontWeight: 'bold',
   },
 });

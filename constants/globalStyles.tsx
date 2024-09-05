@@ -59,9 +59,6 @@ export const globalStyles = StyleSheet.create({
     width: "100%",
     // marginVertical: 20,
   },
-  buttonText: {
-    fontFamily: "Raleway-Medium",
-  },
   smallButtonStyles: {
     height: 50,
     alignSelf: "center",

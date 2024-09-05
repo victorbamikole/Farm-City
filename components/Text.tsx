@@ -23,7 +23,6 @@ export const CustomText: React.FC<CustomTextProps> = memo(
     textAlign,
     color = "#000",
     fontWeight = "400",
-    fontFamily = "Raleway-Medium",
     style,
     ...rest
   }) => {
@@ -34,9 +33,8 @@ export const CustomText: React.FC<CustomTextProps> = memo(
         textAlign,
         lineHeight,
         fontWeight,
-        fontFamily,
       }),
-      [color, textAlign, fontWeight, fontFamily, lineHeight, fontSize]
+      [color, textAlign, fontWeight, lineHeight, fontSize]
     );
 
     return (

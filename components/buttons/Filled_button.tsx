@@ -62,7 +62,6 @@ const FilledButton: React.FC<FilledButtonProps> = ({
       color: primary,
       fontSize: 18,
       fontWeight: '400',
-      fontFamily: 'Raleway-Medium',
     },
   });
 
@@ -70,7 +69,7 @@ const FilledButton: React.FC<FilledButtonProps> = ({
     <View style={{ opacity }}>
       {gradient && (
         <LinearGradient
-          colors={['#052415', primary]}
+          colors={[primary, primary]}
           style={[styles.gradient, style]}
         />
       )}

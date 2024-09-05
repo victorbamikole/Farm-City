@@ -15,6 +15,7 @@ import { useRouter } from "expo-router";
 import { primary } from "@/constants/Colors";
 import FilledButton from "@/components/buttons/Filled_button";
 import { Spinner } from "@/constants/Spinner";
+import { hp, wp } from "@/constants/ResponsiveDesign";
 
 const ForgotPassword = ({}) => {
   const [phone, setPhone] = useState("");
@@ -27,7 +28,6 @@ const ForgotPassword = ({}) => {
   const onSubmit = async () => {
     if (phone === "" || password === "") {
       setPhone("");
-      setPassword("");
       Toast.show({
         text: "All fields are required",
         position: "top",
@@ -71,14 +71,16 @@ const ForgotPassword = ({}) => {
         barStyle="dark-content"
         backgroundColor={Platform.OS === "ios" ? "white" : "primary"}
       />
-      <StackHeader title="" onPress={() => router.back()} />
-
+      <View style={styles.headerContainer}>
+        <StackHeader title="" onPress={() => router.back()} />
+      </View>
       {/* <KeyboardAwareScrollView> */}
       <View style={styles.container}>
         <View>
           <Text style={styles.regTitle}>Forgot Password</Text>
           <Text style={styles.regBody}>
-            Enter your Email to reset your password
+            Enter your Email you've registered with. We'll send you the
+            instrustions there.
           </Text>
         </View>
         <View style={styles.errorContainer}>
@@ -86,8 +88,11 @@ const ForgotPassword = ({}) => {
         </View>
         <View>
           <KeyboardAwareScrollView>
+            <Text style={styles.inputText}>
+              Email Address{" "}
+              <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+            </Text>
             <View style={[styles.nameSection]}>
-              <Text style={styles.inputText}>Email Address</Text>
               <TextInput
                 style={styles.input}
                 keyboardType="default"
@@ -125,13 +130,14 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   nameSection: {
-    borderColor: "primary",
+    borderColor: primary,
     borderWidth: 0.5,
     borderRadius: 12,
-    minHeight: 50,
-    paddingHorizontal: 15,
-    paddingTop: 3,
-    marginBottom: 10,
+    minHeight: hp(50),
+    paddingHorizontal: hp(15),
+    marginBottom: hp(15),
+    marginTop: hp(10),
+    justifyContent: "center",
   },
   errorContainer: {
     alignItems: "center",
@@ -143,7 +149,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   regBody: {
-    width: "85%",
+    // width: "100%",
     fontSize: 14,
     paddingTop: 10,
     color: "darkGray",
@@ -156,6 +162,12 @@ const styles = StyleSheet.create({
     minHeight: 40,
     fontSize: 15,
   },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingTop: Platform.OS !== "ios" ? 40 : 0,
+  },
   error: {
     color: "#ff5252",
     paddingLeft: 10,
@@ -163,5 +175,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     color: "#005700",
+    fontSize: 12,
+    // paddingTop: 5,
   },
 });

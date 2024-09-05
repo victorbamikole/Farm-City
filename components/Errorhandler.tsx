@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
   },
   modalText: {
     textAlign: "center",
-    fontFamily: "Raleway-Medium",
     fontSize: 13,
     fontWeight: "500",
     color: "rgba(34, 45, 51, 1)",
@@ -116,12 +115,10 @@ const styles = StyleSheet.create({
   },
   networkModalTitle: {
     fontSize: 22,
-    fontFamily: "Raleway-Medium",
     fontWeight: "600",
   },
   networkModalText: {
     fontSize: 18,
-    fontFamily: "Raleway-Medium",
     color: "rgba(34, 45, 51, 1)",
     marginTop: 14,
     textAlign: "center",
