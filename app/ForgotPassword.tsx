@@ -16,13 +16,14 @@ import { primary } from "@/constants/Colors";
 import FilledButton from "@/components/buttons/Filled_button";
 import { Spinner } from "@/constants/Spinner";
 import { hp, wp } from "@/constants/ResponsiveDesign";
+import { Toast } from "native-base";
 
 const ForgotPassword = ({}) => {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingState, setLoadingState] = useState<boolean>(false);
-  const [isFocused, setIsFocused] = useState(false); // State to track focus
+  const [isFocused, setIsFocused] = useState(false);
 
   const router = useRouter();
 
@@ -96,7 +97,7 @@ const ForgotPassword = ({}) => {
             <View
               style={[
                 styles.nameSection,
-                isFocused && { borderColor: primary }, // Change border color on focus
+                isFocused && { borderColor: primary },
               ]}
             >
               <TextInput
@@ -105,8 +106,8 @@ const ForgotPassword = ({}) => {
                 placeholder="Email Address"
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
-                onFocus={() => setIsFocused(true)} // Set focus state to true
-                onBlur={() => setIsFocused(false)}  // Set focus state to false
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)} 
                 onChangeText={(email) => setPhone(email)}
                 selectionColor={'#02391E'}
               />
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   nameSection: {
-    borderColor: "gray", // Default border color
+    borderColor: "gray",
     borderWidth: 0.5,
     borderRadius: 12,
     minHeight: hp(50),
@@ -166,6 +167,9 @@ const styles = StyleSheet.create({
   input: {
     minHeight: 40,
     fontSize: 15,
+  },
+  createButton:{
+    backgroundColor: primary,
   },
   headerContainer: {
     flexDirection: "row",

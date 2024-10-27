@@ -17,7 +17,6 @@ import { Colors } from "@/constants/Colors";
 import { COLORS, FONTS, SIZES } from "@/constants/Theme";
 import FilledButton from "@/components/buttons/Filled_button";
 import { useRouter } from "expo-router";
-const router = useRouter();
 
 const { onboarding1, onboarding2, onboarding3 } = Assets;
 
@@ -40,6 +39,7 @@ const onBoardings = [
 ];
 
 const OnBoarding = () => {
+  const router = useRouter();
   const [completed, setCompleted] = React.useState(false);
   const navigation = useNavigation(); // Use the hook
 
