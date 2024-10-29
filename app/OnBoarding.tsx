@@ -13,35 +13,34 @@ import { useNavigation } from "@react-navigation/native"; // Import the hook
 
 // constants
 import { Assets } from "@/constants/Assets";
-import { Colors } from "@/constants/Colors";
 import { COLORS, FONTS, SIZES } from "@/constants/Theme";
 import FilledButton from "@/components/buttons/Filled_button";
 import { useRouter } from "expo-router";
-const router = useRouter();
 
 const { onboarding1, onboarding2, onboarding3 } = Assets;
 
 const onBoardings = [
   {
     title: "Quick Access to Farm Products",
-    description: "Easily route access to Farmers location via map navigation.",
+    description: "Enjoy a variety of farmers to shop from at the best prices",
     img: onboarding1,
   },
   {
     title: "Quick Access to Farm Products",
-    description: "Easily route access to Farmers location via map navigation.",
+    description: "Get farm-fresh produce delivered directly to you with ease.",
     img: onboarding2,
   },
   {
     title: "Quick Access to Farm Products",
-    description: "Easily route access to Farmers location via map navigation.",
+    description: "Empower farmers by choosing locally grown, high-quality products.",
     img: onboarding3,
   },
 ];
 
 const OnBoarding = () => {
+  const router = useRouter();
   const [completed, setCompleted] = React.useState(false);
-  const navigation = useNavigation(); // Use the hook
+  const navigation = useNavigation();
 
   const scrollX = new Animated.Value(0);
 

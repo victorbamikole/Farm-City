@@ -35,11 +35,11 @@ import { useRouter } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
 import * as LocalAuthentication from "expo-local-authentication";
 
-const router = useRouter();
 
 const { width, height } = Dimensions.get("window");
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const [phone, setPhone] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loadingState, setLoadingState] = useState<boolean>(false);

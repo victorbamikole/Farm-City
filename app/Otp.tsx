@@ -60,7 +60,7 @@ const Otp = () => {
         <FilledButton
           title="Verifiy Email"
           onPress={onSubmit}
-          //   style={styles.createButton}
+            style={styles.createButton}
           gradient
           color={"white"}
         />
@@ -87,7 +87,6 @@ const Otp = () => {
           unfilledColor={"#b1c5b1"}
         />
       </View>
-      {/* <KeyboardAwareScrollView> */}
       <View style={styles.container}>
         <View>
           <Text style={styles.regTitle}>Email Verification</Text>
@@ -195,15 +194,15 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   inputText: {
-    color: "#005700",
+    color: "#005700"
   },
   textButton: {
-    fontSize: 14,
+    fontSize: 14
   },
   inputsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
+    marginTop: 20
   },
   pinCodeContainer: {
     width: 50,
@@ -213,19 +212,19 @@ const styles = StyleSheet.create({
     borderColor: "#D3D3D3",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F8F8F8",
+    backgroundColor: "#F8F8F8"
   },
   activePinCodeContainer: {
-    borderColor: primary, // Primary color for focused input
-    borderWidth: 2,
+    borderColor: primary,
+    borderWidth: 2
   },
   pinCodeText: {
     fontSize: 18,
-    color: "#000", // Black text color
+    color: "#000"
   },
   focusStick: {
     width: 2,
     height: 30,
-    backgroundColor: primary, // Primary color for the stick when focused
+    backgroundColor: primary
   },
 });
