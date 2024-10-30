@@ -60,7 +60,7 @@ const Otp = () => {
         <FilledButton
           title="Verifiy Email"
           onPress={onSubmit}
-            style={styles.createButton}
+            // style={styles.createButton}
           gradient
           color={"white"}
         />
@@ -119,7 +119,7 @@ const Otp = () => {
               title=""
               title2="Resend OTP Code"
               title2Color={primary}
-              onPress={() => {}}
+              onPress={() => router.replace("/(dashboard)/dashboard")}
               titleStyle={styles.textButton}
             />
           </View>

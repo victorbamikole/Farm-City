@@ -42,6 +42,8 @@ export default function RootLayout() {
         <Stack.Screen name="SignUp" options={{ headerShown: false }} />
         <Stack.Screen name="Otp" options={{ headerShown: false }} />
         <Stack.Screen name="ResetPassword" options={{ headerShown: false }} />
+        <Stack.Screen name="(dashboard)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
