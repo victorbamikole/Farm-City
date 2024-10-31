@@ -35,7 +35,6 @@ import { useRouter } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
 import * as LocalAuthentication from "expo-local-authentication";
 
-
 const { width, height } = Dimensions.get("window");
 
 const Login: React.FC = () => {
@@ -63,13 +62,38 @@ const Login: React.FC = () => {
     setPassword("");
   };
 
-  const onSubmit = async () => {
+  // const onSubmit = async () => {
+  //   if (phone === "" || password === "") {
+  //     setPhone("");
+  //     setPassword("");
+  //     Toast.show({
+  //       text: "All fields are required",
+  //       position: "top",
+  //       type: "danger",
+  //       duration: 3000,
+  //       textStyle: {
+  //         textAlign: "center",
+  //       },
+  //       style: {
+  //         width: wp(250),
+  //         alignSelf: "center",
+  //         justifyContent: "center",
+  //         borderColorRadius: 10,
+  //         borderRadius: 5,
+  //       },
+  //     });
+  //   } else {
+  //     await login();
+  //   }
+  // };
+
+  const onSubmit = () => {
     if (phone === "" || password === "") {
       setPhone("");
       setPassword("");
       Toast.show({
         text: "All fields are required",
-        position: "top",
+        // position: "top",
         type: "danger",
         duration: 3000,
         textStyle: {
@@ -79,12 +103,30 @@ const Login: React.FC = () => {
           width: wp(250),
           alignSelf: "center",
           justifyContent: "center",
-          borderColorRadius: 10,
           borderRadius: 5,
         },
       });
+    } else if (
+      phone !== "farmcity@interswitchgroup.com" &&
+      password !== "technovation1"
+    ) {
+      router.push("/User"); // Routes to the UserScreen when hardcoded credentials match
     } else {
-      await login();
+      Toast.show({
+        text: "Invalid email or password",
+        // position: "top",
+        type: "danger",
+        duration: 3000,
+        textStyle: {
+          textAlign: "center",
+        },
+        style: {
+          width: wp(250),
+          alignSelf: "center",
+          justifyContent: "center",
+          borderRadius: 5,
+        },
+      });
     }
   };
 
