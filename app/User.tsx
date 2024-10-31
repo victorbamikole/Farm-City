@@ -24,7 +24,7 @@ const User = () => {
     if (selectedRole === "farmer") {
       router.push("/FarmerDashboard");
     } else if (selectedRole === "buyer") {
-    //   router.push("/user-dashboard");
+    router.push({ pathname: "(tabs)" } as any);
     }
   };
 
