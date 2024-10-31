@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -103,7 +104,12 @@ export default function HomeScreen() {
         backgroundColor: "white",
       }}
     >
-      <StatusBar barStyle={"light-content"} />
+      <StatusBar barStyle={"dark-content"} />
+
+      <ScrollView
+      showsVerticalScrollIndicator={false}
+      >
+
       <View
         style={{
           flexDirection: "row",
@@ -263,6 +269,8 @@ export default function HomeScreen() {
           keyExtractor={(item) => item.farmerName}
         />
       </View>
+      </ScrollView>
+
     </SafeAreaView>
   );
 }

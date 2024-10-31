@@ -25,7 +25,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "home" : "home-outline"}
-              color={"green"}
+              color={"#005700"}
             />
           ),
         }}
@@ -35,8 +35,7 @@ export default function TabLayout() {
         options={{
           title: "Explore",
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome name="search" size={24} color="green" />
-            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <FontAwesome name="search" size={24} color="#005700" />
           ),
         }}
       />
@@ -45,8 +44,7 @@ export default function TabLayout() {
         options={{
           title: "Message",
           tabBarIcon: ({ color, focused }) => (
-            <MaterialIcons name="chat" size={24} color="green" />
-            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <MaterialIcons name="chat" size={24} color="#005700" />
           ),
         }}
       />
@@ -55,8 +53,7 @@ export default function TabLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ color, focused }) => (
-            <Entypo name="shopping-cart" size={24} color="green" />
-            // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <Entypo name="shopping-cart" size={24} color="#005700" />
           ),
         }}
       />
