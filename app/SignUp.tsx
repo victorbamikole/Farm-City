@@ -154,7 +154,6 @@ const Signup = () => {
               underlineColorAndroid="transparent"
               onChangeText={(email) => setPhone(email)}
               selectionColor={'#02391E'}
-
             />
           </View>
           {/* <Text style={styles.error}>Validation error here</Text> */}
