@@ -7,489 +7,153 @@ import {
   Padding,
 } from "@/constants/globalStyles";
 import * as React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
 
 const LightElanisOverview = () => {
   return (
-    <View style={styles.lightElanisOverview}>
-      <View style={styles.frameParent}>
-        <View style={styles.frameGroup}>
-          <View style={styles.salesParent}>
-            <View style={styles.sales}>
-              <View style={[styles.shape, styles.shapeBg]} />
-              <Text
-                style={[
-                  styles.comparedTo21340Container,
-                  styles.comparedPosition,
-                ]}
-              >
-                <Text style={styles.comparedTo}>{`Compared to 
+    <SafeAreaView style={styles.lightElanisOverview}>
+      <ScrollView style={{ marginLeft: 30 }}>
+        <View style={styles.frameParent}>
+          <View style={styles.frameGroup}>
+            <View style={styles.salesParent}>
+              <View style={styles.sales}>
+                <View style={[styles.shape, styles.shapeBg]} />
+                <Text
+                  style={[
+                    styles.comparedTo21340Container,
+                    styles.comparedPosition,
+                  ]}
+                >
+                  <Text style={styles.comparedTo}>{`Compared to 
 (`}</Text>
-                <Text style={styles.text}>₦</Text>
-                <Text style={styles.comparedTo}>21340 last year)</Text>
-              </Text>
-              <Text style={[styles.text1, styles.textTypo6]}>+2.5%</Text>
-              <Text style={[styles.text2, styles.textTypo5]}>₦10289</Text>
-              <Image
-                style={[styles.icDownIcon, styles.shapeIconLayout6]}
-                //
-                source={require("../assets/images/bell.png")}
-              />
-              <Text style={[styles.sales1, styles.apr1Position]}>Sales</Text>
-            </View>
-            <View style={styles.sales}>
-              <View style={[styles.shape, styles.shapeBg]} />
-              <Text
-                style={[
-                  styles.comparedTo21340Container,
-                  styles.comparedPosition,
-                ]}
-              >
-                <Text style={styles.comparedTo}>{`Compared to 
+                  <Text style={styles.text}>₦</Text>
+                  <Text style={styles.comparedTo}>21340 last year)</Text>
+                </Text>
+                <Text style={[styles.text1, styles.textTypo6]}>+2.5%</Text>
+                <Text style={[styles.text2, styles.textTypo5]}>₦10289</Text>
+                <Image
+                  style={[styles.icDownIcon, styles.shapeIconLayout6]}
+                  source={require("../assets/images/bell.png")}
+                />
+                <Text style={[styles.sales1, styles.apr1Position]}>Sales</Text>
+              </View>
+              <View style={styles.sales}>
+                <View style={[styles.shape, styles.shapeBg]} />
+                <Text
+                  style={[
+                    styles.comparedTo21340Container,
+                    styles.comparedPosition,
+                  ]}
+                >
+                  <Text style={styles.comparedTo}>{`Compared to 
 (`}</Text>
-                <Text style={styles.text}>₦</Text>
-                <Text style={styles.comparedTo}>19000 last year)</Text>
-              </Text>
-              <Text style={[styles.text4, styles.textTypo6]}>+0.5%</Text>
-              <Text style={[styles.text5, styles.textTypo5]}>₦20921</Text>
-              <Image
-                style={[styles.icDownIcon1, styles.shapeIconLayout6]}
-                //
-                source={require("../assets/images/bell.png")}
-              />
-              <Text style={[styles.sales1, styles.apr1Position]}>Purchase</Text>
-            </View>
-          </View>
-          <View style={styles.salesParent}>
-            <View style={styles.sales}>
-              <View style={[styles.shape, styles.shapeBg]} />
-              <Text style={[styles.comparedTo165, styles.comparedPosition]}>
-                Compared to (₦165 last year)
-              </Text>
-              <Text style={[styles.text6, styles.textTypo4]}>-1.5%</Text>
-              <Text style={[styles.text2, styles.textTypo5]}>$149</Text>
-              <Image
-                style={[styles.icDownIcon2, styles.shapeIconLayout6]}
-                
-                source={require("../assets/images/bell.png")}
-              />
-              <Text style={[styles.sales1, styles.apr1Position]}>Return</Text>
-            </View>
-            <View style={styles.sales}>
-              <View style={[styles.shape, styles.shapeBg]} />
-              <Text style={[styles.comparedTo165, styles.comparedPosition]}>
-                Compared to (₦10500 last year)
-              </Text>
-              <Text style={[styles.text8, styles.textTypo6]}>+2.5%</Text>
-              <Text style={[styles.text2, styles.textTypo5]}>$17390</Text>
-              <Image
-                style={[styles.icDownIcon3, styles.shapeIconLayout6]}
-                source={require("../assets/images/bell.png")}
-              />
-              <Text style={[styles.marketing1, styles.apr1Position]}>
-                Marketing
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.hitRateParent}>
-          <View style={styles.shape4Layout}>
-            <View style={[styles.cardTeam, styles.shape4Layout]}>
-              <View style={[styles.shape4, styles.shape4Layout]} />
-              <View style={styles.hitRate1}>
+                  <Text style={styles.text}>₦</Text>
+                  <Text style={styles.comparedTo}>19000 last year)</Text>
+                </Text>
+                <Text style={[styles.text4, styles.textTypo6]}>+0.5%</Text>
+                <Text style={[styles.text5, styles.textTypo5]}>₦20921</Text>
                 <Image
-                  style={[styles.shapeIcon, styles.shapeIconLayout6]}
+                  style={[styles.icDownIcon1, styles.shapeIconLayout6]}
+                  //
                   source={require("../assets/images/bell.png")}
                 />
-                <Image
-                  style={[styles.icGoalIcon, styles.shapeIconLayout6]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Image
-                  style={[styles.shapeIcon, styles.shapeIconLayout6]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Text style={[styles.text10, styles.textTypo3]}>68%</Text>
-                <Text style={[styles.hitRateThis, styles.text10Position]}>
-                  Hit Rate this year
+                <Text style={[styles.sales1, styles.apr1Position]}>
+                  Purchase
                 </Text>
               </View>
-              <View style={styles.deals}>
+            </View>
+            <View style={styles.salesParent}>
+              <View style={styles.sales}>
+                <View style={[styles.shape, styles.shapeBg]} />
+                <Text style={[styles.comparedTo165, styles.comparedPosition]}>
+                  Compared to (₦165 last year)
+                </Text>
+                <Text style={[styles.text6, styles.textTypo4]}>-1.5%</Text>
+                <Text style={[styles.text2, styles.textTypo5]}>₦149</Text>
                 <Image
-                  style={[styles.shapeCopy3, styles.shapeIconLayout6]}
+                  style={[styles.icDownIcon2, styles.shapeIconLayout6]}
                   source={require("../assets/images/bell.png")}
                 />
+                <Text style={[styles.sales1, styles.apr1Position]}>Return</Text>
+              </View>
+              <View style={styles.sales}>
+                <View style={[styles.shape, styles.shapeBg]} />
+                <Text style={[styles.comparedTo165, styles.comparedPosition]}>
+                  Compared to (₦10500 last year)
+                </Text>
+                <Text style={[styles.text8, styles.textTypo6]}>+2.5%</Text>
+                <Text style={[styles.text2, styles.textTypo5]}>₦17390</Text>
                 <Image
-                  style={[styles.icGoalCopy2, styles.shapeIconLayout6]}
+                  style={[styles.icDownIcon3, styles.shapeIconLayout6]}
                   source={require("../assets/images/bell.png")}
                 />
-                <Image
-                  style={[styles.shapeCopy3, styles.shapeIconLayout6]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Text style={[styles.text11, styles.text11Position]}>76%</Text>
-                <Text style={[styles.dealsThisYear, styles.text11Position]}>
-                  Deals this year
+                <Text style={[styles.marketing1, styles.apr1Position]}>
+                  Marketing
                 </Text>
               </View>
             </View>
           </View>
-          <View style={styles.shape5Layout}>
-            <View style={[styles.shape5, styles.shape5Layout]} />
-            <View style={styles.visitor}>
-              <Text style={[styles.text12, styles.apr1Position]}>10,254</Text>
-              <Text style={[styles.text13, styles.textTypo2]}>1.5%</Text>
+        </View>
+        <View style={[styles.overview, styles.groupLayout]}>
+          <View style={[styles.group, styles.groupLayout]}>
+            <View style={styles.show}>
+              <Text style={[styles.showThisYearContainer, styles.textTypo3]}>
+                <Text style={styles.show1}>Show:</Text>
+                <Text style={styles.text21}>{` `}</Text>
+                <Text style={styles.thisYear}>This Year</Text>
+              </Text>
               <Image
-                style={[styles.icDownIcon4, styles.shapeIconLayout6]}
+                style={[styles.icDropdownIcon, styles.shapeIconLayout6]}
                 source={require("../assets/images/bell.png")}
               />
-              <Text style={[styles.visitorsThisYear, styles.visitorsPosition]}>
-                Visitors this year
-              </Text>
+            </View>
+            <Text style={[styles.overview1, styles.text20Typo]}>Overview</Text>
+          </View>
+          <View style={styles.download}>
+            <View style={[styles.month, styles.shapeIconLayout7]}>
+              <View style={[styles.shape19, styles.shapeIconLayout7]} />
             </View>
             <Image
-              style={styles.graphIcon}
+              style={[styles.componenticonicDownload, styles.shapeIconLayout6]}
               source={require("../assets/images/bell.png")}
             />
           </View>
         </View>
-        <View style={styles.salesReport}>
-          <View style={[styles.month, styles.shapeIconLayout7]}>
-            <View style={[styles.shape, styles.shapeBg]} />
-            <View style={styles.value}>
-              <View style={[styles.k, styles.viewPosition]}>
-                <View style={[styles.shape6, styles.shapePosition2]} />
-                <Text style={[styles.k1, styles.textTypo1]}>$1k</Text>
-              </View>
-              <View style={[styles.view, styles.viewPosition]}>
-                <View style={[styles.shape7, styles.shapePosition2]} />
-                <Text style={[styles.text14, styles.textTypo1]}>$750</Text>
-              </View>
-              <View style={[styles.view1, styles.viewPosition]}>
-                <Text style={[styles.text15, styles.textTypo1]}>$500</Text>
-                <View style={[styles.shape7, styles.shapePosition2]} />
-              </View>
-              <View style={[styles.view2, styles.viewPosition]}>
-                <Text style={[styles.text14, styles.textTypo1]}>$250</Text>
-                <View style={[styles.shape7, styles.shapePosition2]} />
-              </View>
-              <View style={[styles.view3, styles.viewPosition]}>
-                <Text style={[styles.text17, styles.textTypo1]}>$0</Text>
-                <View style={[styles.shape10, styles.shapePosition2]} />
-              </View>
-            </View>
-            <View style={styles.monthGraph}>
-              <View style={[styles.may, styles.shapeIconLayout7]}>
-                <Text style={[styles.may1, styles.may1Position]}>May</Text>
-                <Image
-                  style={[styles.shapeIcon2, styles.shapeIconLayout5]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Image
-                  style={[styles.shapeIcon3, styles.shapeIconLayout5]}
-                  source={require("../assets/images/bell.png")}
-                />
-              </View>
-              <View style={styles.apr}>
-                <Text style={[styles.apr1, styles.textTypo3]}>Apr</Text>
-                <Image
-                  style={[styles.shapeIcon4, styles.shapeIconLayout4]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Image
-                  style={[styles.shapeIcon5, styles.shapeIconLayout4]}
-                  source={require("../assets/images/bell.png")}
-                />
-              </View>
-              <View style={styles.mar}>
-                <Text style={[styles.mar1, styles.textTypo3]}>Mar</Text>
-                <Image
-                  style={[styles.shapeIcon6, styles.shapeIconLayout3]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Image
-                  style={[styles.shapeIcon7, styles.shapeIconLayout3]}
-                  source={require("../assets/images/bell.png")}
-                />
-              </View>
-              <View style={[styles.feb, styles.febPosition]}>
-                <Text style={[styles.feb1, styles.textTypo3]}>Feb</Text>
-                <Image
-                  style={[styles.shapeIcon8, styles.shapeIconPosition2]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Image
-                  style={[styles.shapeIcon9, styles.shapeIconPosition1]}
-                  source={require("../assets/images/bell.png")}
-                />
-              </View>
-              <View style={[styles.jun, styles.febPosition]}>
-                <Text style={[styles.jun1, styles.may1Position]}>Jun</Text>
-                <Image
-                  style={[styles.shapeIcon10, styles.shapeIconPosition2]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Image
-                  style={[styles.shapeIcon11, styles.shapeIconPosition1]}
-                  source={require("../assets/images/bell.png")}
-                />
-              </View>
-              <View style={[styles.jan, styles.febPosition]}>
-                <Text style={[styles.jan1, styles.textTypo3]}>Jan</Text>
-                <Image
-                  style={[styles.shapeIcon12, styles.shapeIconLayout]}
-                  source={require("../assets/images/bell.png")}
-                />
-                <Image
-                  style={[styles.shapeIcon13, styles.shapeIconLayout]}
-                  source={require("../assets/images/bell.png")}
-                />
-              </View>
-            </View>
-          </View>
-          <View style={[styles.offlineSales, styles.salesPosition1]}>
-            <View style={[styles.shape11, styles.shapePosition1]} />
-            <Text style={[styles.offlineSales1, styles.salesPosition]}>
-              Offline Sales
-            </Text>
-          </View>
-          <View style={[styles.onlineSales, styles.salesPosition1]}>
-            <View style={[styles.shape12, styles.shapePosition1]} />
-            <Text style={[styles.onlineSales1, styles.salesPosition]}>
-              Online Sales
-            </Text>
-          </View>
-          <Text style={[styles.salesReport1, styles.textPosition]}>
-            Sales Report
-          </Text>
-          <Text style={[styles.text18, styles.textTypo3]}>2017-2018</Text>
-        </View>
-        <View style={styles.marketplaceVisitor}>
-          <View style={styles.cardTeam1}>
-            <View style={[styles.shape, styles.shapeBg]} />
-            <View style={[styles.amazon, styles.amazonPosition]}>
-              <View style={[styles.shape14, styles.shapePosition]} />
-              <Text style={[styles.amazon1, styles.salesPosition]}>Amazon</Text>
-              <Text style={[styles.k2, styles.salesPosition]}>2.1k</Text>
-            </View>
-            <View style={[styles.alibaba, styles.amazonPosition]}>
-              <View style={[styles.shape15, styles.shapePosition]} />
-              <Text style={[styles.alibaba1, styles.salesPosition]}>
-                Alibaba
-              </Text>
-              <Text style={[styles.k3, styles.salesPosition]}>1k</Text>
-            </View>
-            <View style={[styles.ebay, styles.ebayPosition]}>
-              <View style={[styles.shape16, styles.shapePosition]} />
-              <Text style={[styles.ebay1, styles.salesPosition]}>Ebay</Text>
-              <Text style={[styles.k4, styles.salesPosition]}>1.9k</Text>
-            </View>
-            <View style={[styles.shopify, styles.ebayPosition]}>
-              <View style={[styles.shape17, styles.shapePosition]} />
-              <Text style={[styles.shopify1, styles.salesPosition]}>
-                Shopify
-              </Text>
-              <Text style={[styles.k5, styles.salesPosition]}>15.7k</Text>
-            </View>
-            <Image
-              style={[styles.btnChevronRightIcon, styles.iconPosition]}
-              source={require("../assets/images/bell.png")}
-            />
-            <Image
-              style={[styles.btnChevronLeftIcon, styles.btnIconPosition]}
-              source={require("../assets/images/bell.png")}
-            />
-            <Text style={[styles.text19, styles.textPosition]}>2017</Text>
-            <View style={styles.chart}>
-              <Image
-                style={[styles.shapeIcon14, styles.shapeIconLayout6]}
-                source={require("../assets/images/bell.png")}
-              />
-              <Image
-                style={[styles.shapeIcon15, styles.shapeIconPosition]}
-                source={require("../assets/images/bell.png")}
-              />
-              <Image
-                style={[styles.shapeIcon16, styles.shapeIconPosition]}
-                source={require("../assets/images/bell.png")}
-              />
-              <Image
-                style={[styles.shapeIcon17, styles.shapeIconLayout6]}
-                source={require("../assets/images/bell.png")}
-              />
-              <Text style={[styles.text20, styles.text20Typo]}>22.870</Text>
-              <Text style={[styles.visitorsThisYear1, styles.visitorsPosition]}>
-                Visitors this year
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.newCustomers}>
-          <View style={[styles.shape, styles.shapeBg]} />
-          <Text style={[styles.viewMoreCustomers, styles.labelTypo]}>
-            View more Customers
-          </Text>
-          <View style={[styles.separator, styles.shapePosition2]} />
-          <View style={styles.customerParent}>
-            <View style={[styles.customer, styles.customerSpaceBlock]}>
-              <View style={[styles.ppParent, styles.contentFlexBox]}>
-                <Image
-                  style={styles.ppIcon}
-                  source={require("../assets/images/bell.png")}
-                />
-                <View style={styles.isabellaMoranParent}>
-                  <Text style={[styles.isabellaMoran, styles.textTypo3]}>
-                    Francis Holzworth
-                  </Text>
-                  <Text style={styles.customerId00222}>Customer ID#00222</Text>
-                </View>
-              </View>
-              <Image
-                style={styles.iconLayout1}
-                source={require("../assets/images/bell.png")}
-              />
-            </View>
-            <View style={[styles.customer, styles.customerSpaceBlock]}>
-              <View style={[styles.ppParent, styles.contentFlexBox]}>
-                <Image
-                  style={styles.ppIcon}
-                  source={require("../assets/images/bell.png")}
-                />
-                <View style={styles.isabellaMoranParent}>
-                  <Text style={[styles.isabellaMoran, styles.textTypo3]}>
-                    Kaylyn Yokel
-                  </Text>
-                  <Text style={styles.customerId00222}>Customer ID#00222</Text>
-                </View>
-              </View>
-              <Image
-                style={styles.iconLayout1}
-                source={require("../assets/images/bell.png")}
-              />
-            </View>
-            <View style={[styles.customer, styles.customerSpaceBlock]}>
-              <View style={[styles.ppParent, styles.contentFlexBox]}>
-                <Image
-                  style={styles.ppIcon}
-                  source={require("../assets/images/bell.png")}
-                />
-                <View style={styles.isabellaMoranParent}>
-                  <Text style={[styles.isabellaMoran, styles.textTypo3]}>
-                    Kimberly Muro
-                  </Text>
-                  <Text style={styles.customerId00222}>Customer ID#00222</Text>
-                </View>
-              </View>
-              <Image
-                style={styles.iconLayout1}
-                source={require("../assets/images/bell.png")}
-              />
-            </View>
-            <View style={[styles.customer, styles.customerSpaceBlock]}>
-              <View style={[styles.ppParent, styles.contentFlexBox]}>
-                <Image
-                  style={styles.ppIcon}
-                  source={require("../assets/images/bell.png")}
-                />
-                <View style={styles.isabellaMoranParent}>
-                  <Text style={[styles.isabellaMoran, styles.textTypo3]}>
-                    Jack Sause
-                  </Text>
-                  <Text style={styles.customerId00222}>Customer ID#00222</Text>
-                </View>
-              </View>
-              <Image
-                style={styles.iconLayout1}
-                source={require("../assets/images/bell.png")}
-              />
-            </View>
-            <View style={[styles.customer, styles.customerSpaceBlock]}>
-              <View style={[styles.ppParent, styles.contentFlexBox]}>
-                <Image
-                  style={styles.ppIcon}
-                  source={require("../assets/images/bell.png")}
-                />
-                <View style={styles.isabellaMoranParent}>
-                  <Text style={[styles.isabellaMoran, styles.textTypo3]}>
-                    Rebekkah Lafantano
-                  </Text>
-                  <Text style={styles.customerId00222}>Customer ID#00222</Text>
-                </View>
-              </View>
-              <Image
-                style={styles.iconLayout1}
-                source={require("../assets/images/bell.png")}
-              />
-            </View>
-          </View>
-          <Image
-            style={[styles.icMoreIcon, styles.iconPosition]}
-            source={require("../assets/images/bell.png")}
-          />
-          <Text style={[styles.newCustomers1, styles.textPosition]}>
-            New Customers
-          </Text>
-        </View>
-      </View>
-      <View style={[styles.overview, styles.groupLayout]}>
-        <View style={[styles.group, styles.groupLayout]}>
-          <View style={styles.show}>
-            <Text style={[styles.showThisYearContainer, styles.textTypo3]}>
-              <Text style={styles.show1}>Show:</Text>
-              <Text style={styles.text21}>{` `}</Text>
-              <Text style={styles.thisYear}>This Year</Text>
-            </Text>
-            <Image
-              style={[styles.icDropdownIcon, styles.shapeIconLayout6]}
-              source={require("../assets/images/bell.png")}
-            />
-          </View>
-          <Text style={[styles.overview1, styles.text20Typo]}>Overview</Text>
-        </View>
-        <View style={styles.download}>
-          <View style={[styles.month, styles.shapeIconLayout7]}>
-            <View style={[styles.shape19, styles.shapeIconLayout7]} />
-          </View>
-          <Image
-            style={[styles.componenticonicDownload, styles.shapeIconLayout6]}
-            source={require("../assets/images/bell.png")}
-          />
-        </View>
-      </View>
-      <View style={[styles.menu01Parent, styles.inputFlexBox]}>
-        <Image
-          style={[styles.menu01Icon, styles.iconLayout]}
-          source={require("../assets/images/bell.png")}
-        />
-        <View style={styles.inputField}>
-          <View style={styles.inputFieldBase}>
+        <View style={[styles.menu01Parent, styles.inputFlexBox]}>
+          <View style={styles.inputField}>
             <View style={styles.inputFieldBase}>
-              <Text style={[styles.label, styles.labelLayout]}>Email</Text>
-              <View style={[styles.input, styles.inputFlexBox]}>
-                <View style={[styles.content, styles.contentFlexBox]}>
+              <View style={styles.inputFieldBase}>
+                <Text style={[styles.label, styles.labelLayout]}>Email</Text>
+                <View style={[styles.input, styles.inputFlexBox]}>
+                  <View style={[styles.content, styles.contentFlexBox]}>
+                   
+                    <Text style={[styles.text22, styles.textTypo]}>Search</Text>
+                  </View>
                   <Image
-                    style={[styles.searchSmIcon, styles.iconLayout1]}
+                    style={styles.helpIcon}
                     source={require("../assets/images/bell.png")}
                   />
-                  <Text style={[styles.text22, styles.textTypo]}>Search</Text>
                 </View>
-                <Image
-                  style={styles.helpIcon}
-                  source={require("../assets/images/bell.png")}
-                />
               </View>
+              <Text style={[styles.hintText, styles.textTypo]}>
+                This is a hint text to help user.
+              </Text>
             </View>
-            <Text style={[styles.hintText, styles.textTypo]}>
-              This is a hint text to help user.
-            </Text>
           </View>
+          <Image
+            style={styles.iconLayout}
+            source={require("../assets/images/bell.png")}
+          />
         </View>
-        <Image
-          style={styles.iconLayout}
-          source={require("../assets/images/bell.png")}
-        />
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
