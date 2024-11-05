@@ -43,8 +43,8 @@ const SplashOne = () => {
       500
     );
     setTimeout(() => {
-      router.push({ pathname: "(tabs)" } as any);
-      //  router.push({ pathname: "/OnBoarding" } as any);
+      // router.push({ pathname: "(tabs)" } as any);
+       router.push({ pathname: "/OnBoarding" } as any);
     }, 2500);
   }, []);
 
