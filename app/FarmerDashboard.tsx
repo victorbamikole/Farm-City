@@ -40,7 +40,7 @@ const LightElanisOverview = () => {
                 <Text style={[styles.text2, styles.textTypo5]}>₦10289</Text>
                 <Image
                   style={[styles.icDownIcon, styles.shapeIconLayout6]}
-                  source={require("../assets/images/bell.png")}
+                  source={require("../assets/images/up.png")}
                 />
                 <Text style={[styles.sales1, styles.apr1Position]}>Sales</Text>
               </View>
@@ -62,7 +62,7 @@ const LightElanisOverview = () => {
                 <Image
                   style={[styles.icDownIcon1, styles.shapeIconLayout6]}
                   //
-                  source={require("../assets/images/bell.png")}
+                  source={require("../assets/images/up.png")}
                 />
                 <Text style={[styles.sales1, styles.apr1Position]}>
                   Purchase
@@ -92,7 +92,7 @@ const LightElanisOverview = () => {
                 <Text style={[styles.text2, styles.textTypo5]}>₦17390</Text>
                 <Image
                   style={[styles.icDownIcon3, styles.shapeIconLayout6]}
-                  source={require("../assets/images/bell.png")}
+                  source={require("../assets/images/up.png")}
                 />
                 <Text style={[styles.marketing1, styles.apr1Position]}>
                   Marketing
