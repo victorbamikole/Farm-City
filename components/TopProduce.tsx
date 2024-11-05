@@ -1,13 +1,15 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import AntDesign from "@expo/vector-icons/AntDesign";
 
-type FarmerProps  = {
-  image: any,
-  name: any,
-  rating: any
-}
-const TopProduce = ({image, name, rating}: FarmerProps) => {
+type FarmerProps = {
+  image: any;
+  name: string;
+  rating: number;
+};
+
+const TopProduce = ({ image, name, rating }: FarmerProps) => {
+  const isRemoteImage = typeof image === "string";
+
   return (
     <View style={{ justifyContent: "center", alignItems: "center" }}>
       <View
@@ -15,7 +17,7 @@ const TopProduce = ({image, name, rating}: FarmerProps) => {
       >
         <Image
           style={{ height: 80, width: 80, borderRadius: 80 }}
-          source={{ uri: image }}
+          source={isRemoteImage ? { uri: image } : image}
         />
       </View>
       <View style={{ paddingTop: 10 }}>
@@ -29,7 +31,10 @@ const TopProduce = ({image, name, rating}: FarmerProps) => {
           alignItems: "center",
         }}
       >
-        <AntDesign name="star" size={12} color="orange" />
+        <Image
+          style={{ width: 20, height: 20 }}
+          source={require("../assets/images/rating.png")}
+        />
         <Text style={{ fontWeight: "500" }}>{rating}</Text>
       </View>
     </View>

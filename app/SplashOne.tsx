@@ -43,19 +43,14 @@ const SplashOne = () => {
       500
     );
     setTimeout(() => {
-      // router.push({ pathname: "(tabs)" } as any);
-       router.push({ pathname: "/OnBoarding" } as any);
+      router.push({ pathname: "(tabs)" } as any);
+      //  router.push({ pathname: "/OnBoarding" } as any);
     }, 2500);
   }, []);
 
 
   return (
     <View style={styles.container}>
-      {/* <LinearGradient
-        // Background Linear Gradient
-        colors={["#157E4B", "#02391E"]}
-        style={styles.background}
-      /> */}
       {animationDone ? (
         <Animated.View
           style={{

@@ -19,7 +19,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ],
+      "package": "com.temitopeadejolu.FarmCity"
     },
     "web": {
       "bundler": "metro",
@@ -28,13 +33,15 @@
     },
     "plugins": [
       "expo-router",
-      "expo-local-authentication",
-        // {
-        //   "faceIDPermission": "Allow to use Face ID."
-        // }
+      "expo-local-authentication"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "713d722e-6f73-4024-821a-6c95e6d6d026"
+      }
     }
   }
 }
