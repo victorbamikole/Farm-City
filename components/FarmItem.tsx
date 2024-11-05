@@ -3,11 +3,12 @@ import React from "react";
 
 type ItemProps = {
   url: any;
-  title: string;
-  weight: number;
+  title: any;
+  weight: any;
+  onPress: any;
 };
 
-const FarmItem = ({ url, title, weight }: ItemProps) => {
+const FarmItem = ({ url, title, weight, onPress }: ItemProps) => {
   return (
     <View style={{ width: 200, borderRadius: 20, margin: 10 }}>
       <TouchableOpacity activeOpacity={0.9}>
@@ -28,25 +29,25 @@ const FarmItem = ({ url, title, weight }: ItemProps) => {
             </Text>
           </View>
         </View>
-
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#0a2c1c",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 10,
-            borderBottomEndRadius: 10,
-            borderTopStartRadius: 10,
-            marginTop: 10,
-          }}
-          onPress={() => {
-            // Handle item click
-          }}
-          activeOpacity={0.8}
-        >
-          <Image source={require("../assets/images/plusSign.png")} />
-        </TouchableOpacity>
       </View>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#0a2c1c",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 10,
+          borderBottomEndRadius: 10,
+          borderTopStartRadius: 10,
+          marginTop: 10,
+        }}
+        onPress={() => {
+          // Handle item click
+        }}
+        activeOpacity={0.8}
+      >
+        <Image source={require("../assets/images/plusSign.png")} />
+      </TouchableOpacity>
     </View>
   );
 };

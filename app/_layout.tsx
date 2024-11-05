@@ -32,24 +32,23 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          animation:'fade',
-        }}
-      >
-        <Stack.Screen name="SplashOne" options={{ headerShown: false }} />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="OnBoarding" options={{ headerShown: false }} />
-        <Stack.Screen name="Login" options={{ headerShown: false }} />
-        <Stack.Screen name="ForgotPassword" options={{ headerShown: false }} />
-        <Stack.Screen name="SignUp" options={{ headerShown: false }} />
-        <Stack.Screen name="Otp" options={{ headerShown: false }} />
-        <Stack.Screen name="User" options={{ headerShown: false }} />
-        <Stack.Screen name="FarmerDashboard" options={{ headerShown: false }} />
-        <Stack.Screen name="ResetPassword" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="SplashOne" options={{ headerShown: false }} />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="OnBoarding" options={{ headerShown: false }} />
+      <Stack.Screen name="Login" options={{ headerShown: false }} />
+      <Stack.Screen name="ForgotPassword" options={{ headerShown: false }} />
+      <Stack.Screen name="SignUp" options={{ headerShown: false }} />
+      <Stack.Screen name="Otp" options={{ headerShown: false }} />
+      <Stack.Screen name="ResetPassword" options={{ headerShown: false }} />
+      <Stack.Screen name="(dashboard)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="User" options={{ headerShown: false }} />
+      <Stack.Screen name="FarmerDashboard" options={{ headerShown: false }} />
+      <Stack.Screen name="ProductDetails" options={{ headerShown: false }} />
+    </Stack>
+    // <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+
+    // </ThemeProvider>
   );
 }

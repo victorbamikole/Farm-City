@@ -13,6 +13,7 @@ import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Categories from "@/components/Categories";
 import FarmItem from "@/components/FarmItem";
 import TopProduce from "@/components/TopProduce";
+import { router } from "expo-router";
 
 const farmersData = [
   {
@@ -109,7 +110,7 @@ const farmProducts2 = [
 ];
 
 export default function HomeScreen() {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState<any>(null);
   return (
     <SafeAreaView
       style={{
@@ -210,6 +211,7 @@ export default function HomeScreen() {
                 url={item.image}
                 title={item.title}
                 weight={item.pricePerKg}
+                onPress={undefined}
               />
             )}
             keyExtractor={(item) => item.title}
@@ -288,6 +290,39 @@ export default function HomeScreen() {
               Drop off just got better!
             </Text>
             <Text>Get your orders using our swift delivery</Text>
+          </View>
+        </View>
+
+        <View>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={farmProducts2}
+            renderItem={({ item }) => (
+              <FarmItem
+                onPress={() => router.push("/ProductDetails")}
+                url={item.image}
+                title={item.title}
+                weight={item.pricePerKg}
+              />
+            )}
+            keyExtractor={(item) => item.title}
+          />
+        </View>
+
+        <View
+          style={{
+            paddingTop: 10,
+            margin: 10,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>Top Farmers </Text>
+          <View>
+            <Text style={{ fontSize: 14, color: "green", fontWeight: "700" }}>
+              View All
+            </Text>
           </View>
         </View>
       </ScrollView>
