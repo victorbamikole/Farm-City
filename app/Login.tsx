@@ -34,6 +34,10 @@ import Loading from "@/components/Loading";
 import { useRouter } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
 import * as LocalAuthentication from "expo-local-authentication";
+import { Formik } from "formik";
+import { loginFormValidate, userNameValidate } from "@/helper/validate";
+import { loginUser } from "@/helper/api";
+import CustomButton from "@/components/buttons/CustomButton";
 
 const { width, height } = Dimensions.get("window");
 
@@ -43,11 +47,29 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [loadingState, setLoadingState] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(false);
+  const [toggleCheckBox, setToggleCheckBox] = useState<boolean>(true);
   const [passwordValue, setPasswordValue] = useState<boolean>(false);
+  const [emailAddress, setEmailAddress] = React.useState("");
+  const [disabled, setIsDisabled] = useState(false);
 
   const modalizeRef = useRef<Modalize>(null);
   const navigation = useNavigation(); // Hook to access navigation
+
+  const login = async (data: any) => {
+    console.log("RESPONSEREGISTER1", data);
+    setLoadingState(true);
+    const status = await loginUser(data);
+    console.log("RESPONSEREGISTER", status);
+    if (status.code === "201") {
+      setLoadingState(false);
+      router.push("/FarmerDashboard");
+    } else {
+      Alert.alert("Error", status.description);
+      setLoadingState(false);
+    }
+    setLoadingState(false);
+  };
+
 
   useEffect(() => {
     // Fetch user data on mount
@@ -61,31 +83,6 @@ const Login: React.FC = () => {
     setPhone("");
     setPassword("");
   };
-
-  // const onSubmit = async () => {
-  //   if (phone === "" || password === "") {
-  //     setPhone("");
-  //     setPassword("");
-  //     Toast.show({
-  //       text: "All fields are required",
-  //       position: "top",
-  //       type: "danger",
-  //       duration: 3000,
-  //       textStyle: {
-  //         textAlign: "center",
-  //       },
-  //       style: {
-  //         width: wp(250),
-  //         alignSelf: "center",
-  //         justifyContent: "center",
-  //         borderColorRadius: 10,
-  //         borderRadius: 5,
-  //       },
-  //     });
-  //   } else {
-  //     await login();
-  //   }
-  // };
 
   const onSubmit = () => {
     if (phone === "" || password === "") {
@@ -185,77 +182,122 @@ const Login: React.FC = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ flexGrow: 1 }}
           >
-            <Text style={styles.inputText}>
-              Email Address{" "}
-              <Text style={{ color: "red", fontSize: 16 }}>*</Text>
-            </Text>
-            <View style={styles.nameSection}>
-              <TextInput
-                style={styles.input}
-                keyboardType="default"
-                placeholder="Email Address"
-                placeholderTextColor="gray"
-                underlineColorAndroid="transparent"
-                onChangeText={(email) => setPhone(email)}
-                selectionColor={"#02391E"}
-              />
-            </View>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              validate={loginFormValidate}
+              validateOnChange={false}
+              validateOnBlur={false}
+              onSubmit={async (values) => {
+                values = await Object.assign(values);
+                setEmailAddress(values.email);
+                setPassword(values.password);
+                login(values);
+                //  console.log("RESPONSEREGISTER2", registerUser(values));
+                // onSignup();
+              }}
+            >
+              {({ handleChange, handleBlur, handleSubmit, values }) => (
+                <View>
+                  <Text style={styles.inputText}>
+                    Email Address{" "}
+                    <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+                  </Text>
+                  <View style={styles.nameSection}>
+                    <TextInput
+                      style={styles.input}
+                      keyboardType="default"
+                      placeholder="Email Address"
+                      placeholderTextColor="gray"
+                      underlineColorAndroid="transparent"
+                      onBlur={handleBlur("email")}
+                      onChangeText={handleChange("email")}
+                      value={values.email}
+                      selectionColor={"#02391E"}
+                    />
+                  </View>
 
-            <Text style={styles.inputText}>
-              Password <Text style={{ color: "red", fontSize: 16 }}>*</Text>
-            </Text>
-            <View style={styles.nameSection}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <TextInput
-                  style={styles.logInput}
-                  placeholder="Password"
-                  placeholderTextColor="gray"
-                  secureTextEntry={!passwordValue}
-                  underlineColorAndroid="transparent"
-                  onChangeText={(text) => setPassword(text.trim())}
-                  value={password}
-                  selectionColor={"#02391E"}
-                />
-                <TouchableOpacity onPress={showPassword}>
-                  <Image
-                    style={{ height: 20, width: 20, tintColor: "#A7A6A6" }}
-                    source={
-                      passwordValue
-                        ? require("../assets/images/eye_fill.png")
-                        : require("../assets/images/eye_off_fill.png")
-                    }
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
+                  <Text style={styles.inputText}>
+                    Password{" "}
+                    <Text style={{ color: "red", fontSize: 16 }}>*</Text>
+                  </Text>
+                  <View style={styles.nameSection}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TextInput
+                        style={styles.logInput}
+                        placeholder="Password"
+                        placeholderTextColor="gray"
+                        secureTextEntry={!passwordValue}
+                        underlineColorAndroid="transparent"
+                        onBlur={handleBlur("password")}
+                        onChangeText={handleChange("password")}
+                        value={values.password}
+                        selectionColor={"#02391E"}
+                      />
+                      <TouchableOpacity onPress={showPassword}>
+                        <Image
+                          style={{
+                            height: 20,
+                            width: 20,
+                            tintColor: "#A7A6A6",
+                          }}
+                          source={
+                            passwordValue
+                              ? require("../assets/images/eye_fill.png")
+                              : require("../assets/images/eye_off_fill.png")
+                          }
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
 
-            {renderButton()}
-            <TouchableOpacity style={{ alignSelf: "center", marginTop: 20 }}>
-              <Entypo name="fingerprint" size={50} color={primary} />
-            </TouchableOpacity>
-            <View style={{ marginTop: 60 }}>
-              <TextButton
-                title="Forgot Password?"
-                onPress={() =>
-                  router.push({ pathname: "/ForgotPassword" } as any)
-                }
-                titleStyle={styles.forgotButton}
-              />
+                  {/* {renderButton()} */}
+                  <TouchableOpacity
+                    style={{ alignSelf: "center", marginTop: 20 }}
+                  >
+                    <Entypo name="fingerprint" size={50} color={primary} />
+                  </TouchableOpacity>
+                  <View style={{ marginTop: 60 }}>
+                    <CustomButton
+                      isLoading={loadingState}
+                      title={"Login"}
+                      onPress={() => handleSubmit()}
+                      emailField={values.email}
+                      toggle={toggleCheckBox}
+                      disbaled={disabled}
+                      password={values.password}
+                      cmf_password={values.password}
+                      userName={values.email}
+                    />
+                    <TextButton
+                      title="Forgot Password?"
+                      onPress={() =>
+                        router.push({ pathname: "/ForgotPassword" } as any)
+                      }
+                      titleStyle={styles.forgotButton}
+                    />
 
-              <TextButton
-                title="Don't have an account?"
-                title2="Sign Up"
-                title2Color={primary}
-                onPress={() => router.push({ pathname: "/SignUp" } as any)}
-                titleStyle={styles.textButton}
-              />
-            </View>
+                    <TextButton
+                      title="Don't have an account?"
+                      title2="Sign Up"
+                      title2Color={primary}
+                      onPress={() =>
+                        router.push({ pathname: "/SignUp" } as any)
+                      }
+                      titleStyle={styles.textButton}
+                    />
+                  </View>
+                </View>
+              )}
+            </Formik>
           </KeyboardAwareScrollView>
 
           {/* <Loading loading={loadingState} /> */}
