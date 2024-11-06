@@ -22,12 +22,11 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        // tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
         tabBarStyle: {
           paddingTop: 10,
           height: 90,
-
         },
       }}
     >
@@ -38,7 +37,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "home" : "home-outline"}
-              color={ focused ?"#06572F" :"#2e2929"}
+              color={focused ? "#06572F" : "#2e2929"}
             />
           ),
           tabBarLabel: ({ focused }) => (
@@ -76,7 +75,7 @@ export default function TabLayout() {
         }}
       />
 
-       <Tabs.Screen
+      <Tabs.Screen
         name="message"
         options={{
           title: "Message",
@@ -84,7 +83,7 @@ export default function TabLayout() {
             focused ? (
               <Message1 width={24} height={24} />
             ) : (
-              <Message  width={24} height={24} />
+              <Message width={24} height={24} />
             ),
           tabBarLabel: ({ focused }) => (
             <Text
@@ -98,7 +97,7 @@ export default function TabLayout() {
           ),
         }}
       />
-        <Tabs.Screen
+      <Tabs.Screen
         name="map"
         options={{
           title: "Map",
@@ -120,8 +119,6 @@ export default function TabLayout() {
           ),
         }}
       />
-      
-
 
       <Tabs.Screen
         name="cart"

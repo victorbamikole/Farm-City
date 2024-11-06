@@ -1,79 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
-  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   View,
+  Platform,
 } from "react-native";
 import * as Progress from "react-native-progress";
 import StackHeader from "@/components/StackHeader";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Loading from "@/components/Loading";
 import { useRouter } from "expo-router";
 import { primary } from "@/constants/Colors";
-import FilledButton from "@/components/buttons/Filled_button";
-import { Spinner } from "@/constants/Spinner";
+import Loading from "@/components/Loading";
 import { wp } from "@/constants/ResponsiveDesign";
 import { OtpInput } from "react-native-otp-entry";
 import TextButton from "@/components/buttons/Text_button";
+import { debounce } from "lodash";
 
 const Otp = () => {
-  const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loadingState, setLoadingState] = useState<boolean>(false);
 
   const router = useRouter();
 
-  const onSubmit = async () => {
-    if (phone === "" || password === "") {
-      setPhone("");
-      Toast.show({
-        text: "All fields are required",
-        position: "top",
-        type: "danger",
-        duration: 3000,
-        textStyle: {
-          textAlign: "center",
-        },
-        style: {
-          width: wp(250),
-          alignSelf: "center",
-          justifyContent: "center",
-          borderColorRadius: 10,
-          borderRadius: 5,
-        },
-      });
-    } else {
-      await otpvalidate();
-    }
-  };
-
-  const renderButton = () => {
-    if (loadingState) {
-      return <Spinner size="large" />;
-    } else {
-      return (
-        <FilledButton
-          title="Verifiy Email"
-          onPress={onSubmit}
-            // style={styles.createButton}
-          gradient
-          color={"white"}
-        />
-      );
-    }
-  };
+  const routeToLogin = useCallback(
+    debounce(() => {
+      router.push("/Login");
+    }, 5000),
+    []
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor={Platform.OS === "ios" ? "white" : "white"}
-      />
+      <StatusBar barStyle="dark-content" backgroundColor="white" />
       <View style={styles.headerContainer}>
         <StackHeader title="" onPress={() => router.back()} />
         <Progress.Bar
@@ -98,13 +57,13 @@ const Otp = () => {
           <Text style={styles.errorTextStyle}>{error}</Text>
         </View>
         <View style={{ justifyContent: "center" }}>
-          {/* <KeyboardAwareScrollView> */}
           <OtpInput
             numberOfDigits={5}
             focusColor={primary}
-            focusStickBlinkingDuration={500}
-            onTextChange={(text) => console.log(text)}
-            onFilled={(text) => console.log(`OTP is ${text}`)}
+            onFilled={(text) => {
+              console.log(`OTP is ${text}`);
+              routeToLogin(); // Trigger debounce to navigate
+            }}
             theme={{
               containerStyle: styles.container,
               inputsContainerStyle: styles.inputsContainer,
@@ -119,17 +78,10 @@ const Otp = () => {
               title=""
               title2="Resend OTP Code"
               title2Color={primary}
-              onPress={() => router.replace("/(dashboard)/dashboard")}
+              onPress={() => {}}
               titleStyle={styles.textButton}
             />
           </View>
-          {/* Resend OTP Code */}
-          {/* </KeyboardAwareScrollView> */}
-
-          <Text style={styles.error}>
-            {/* Add your validation message here if any */}
-          </Text>
-          {/* {renderButton()} */}
         </View>
       </View>
       <Loading loading={loading} />
@@ -150,7 +102,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   nameSection: {
-    borderColor: "primary",
+    borderColor: primary,
     borderWidth: 0.5,
     borderRadius: 12,
     minHeight: 50,
@@ -179,7 +131,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     paddingTop: Platform.OS !== "ios" ? 40 : 0,
-
   },
   errorTextStyle: {
     color: "red",
@@ -194,15 +145,15 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   inputText: {
-    color: "#005700"
+    color: "#005700",
   },
   textButton: {
-    fontSize: 14
+    fontSize: 14,
   },
   inputsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20
+    marginTop: 20,
   },
   pinCodeContainer: {
     width: 50,
@@ -212,19 +163,19 @@ const styles = StyleSheet.create({
     borderColor: "#D3D3D3",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F8F8F8"
+    backgroundColor: "#F8F8F8",
   },
   activePinCodeContainer: {
     borderColor: primary,
-    borderWidth: 2
+    borderWidth: 2,
   },
   pinCodeText: {
     fontSize: 18,
-    color: "#000"
+    color: "#000",
   },
   focusStick: {
     width: 2,
     height: 30,
-    backgroundColor: primary
+    backgroundColor: primary,
   },
 });
