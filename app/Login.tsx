@@ -60,16 +60,15 @@ const Login: React.FC = () => {
     setLoadingState(true);
     const status = await loginUser(data);
     console.log("RESPONSEREGISTER", status);
-    if (status.code === "201") {
+    if (status.code === "200") {
       setLoadingState(false);
-      router.push("/FarmerDashboard");
+      router.push("/User");
     } else {
       Alert.alert("Error", status.description);
       setLoadingState(false);
     }
     setLoadingState(false);
   };
-
 
   useEffect(() => {
     // Fetch user data on mount
@@ -260,23 +259,27 @@ const Login: React.FC = () => {
                   </View>
 
                   {/* {renderButton()} */}
-                  <TouchableOpacity
-                    style={{ alignSelf: "center", marginTop: 20 }}
-                  >
-                    <Entypo name="fingerprint" size={50} color={primary} />
-                  </TouchableOpacity>
-                  <View style={{ marginTop: 60 }}>
-                    <CustomButton
-                      isLoading={loadingState}
-                      title={"Login"}
-                      onPress={() => handleSubmit()}
-                      emailField={values.email}
-                      toggle={toggleCheckBox}
-                      disbaled={disabled}
-                      password={values.password}
-                      cmf_password={values.password}
-                      userName={values.email}
-                    />
+
+                  <View style={{ marginTop: 20, width: "100%" }}>
+                    <View style={{ flexDirection: "row" }}>
+                      <View style={{ width: "80%" }}>
+                        <CustomButton
+                          isLoading={loadingState}
+                          title={"Login"}
+                          onPress={() => handleSubmit()}
+                          emailField={values.email}
+                          toggle={toggleCheckBox}
+                          disbaled={disabled}
+                          password={values.password}
+                          cmf_password={values.password}
+                          userName={values.email}
+                        />
+                      </View>
+                      <TouchableOpacity style={{paddingStart: 10}}>
+                        <Entypo name="fingerprint" size={50} color={primary} />
+                      </TouchableOpacity>
+                    </View>
+
                     <TextButton
                       title="Forgot Password?"
                       onPress={() =>
